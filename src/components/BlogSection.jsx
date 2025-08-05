@@ -94,7 +94,7 @@ const BlogSection = () => {
       <div className="mb-4 flex justify-end">
         <div
           ref={pillRef}
-          className="inline-block px-4 py-1 border border-blue-500 text-blue-500 rounded-full text-sm font-semibold animate-text"
+          className="inline-block px-4 py-1 border border-blue-500 text-blue-500 rounded-full text-sm font-semibold animate-text mb-[2vh]"
         >
           Blogs
         </div>
