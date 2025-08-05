@@ -1,0 +1,69 @@
+@import "tailwindcss";
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 1200s linear infinite;
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+}
+
+.hover-underline {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #0047FF;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* index.css or global.css */
+.hover-letter-animation .char {
+  display: inline-block;
+  transition: transform 0.35s ease, scale 0.35s ease;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hover-letter-animation:hover .char {
+  transform: scaleX(1.4);
+}
+
+.hover-letter-animation:hover .char:nth-child(even) {
+  transform: scaleX(0.8);
+}
