@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import projects from "../data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,12 +132,16 @@ const stats = [
   }
 
   return (
+    <>
+    <Navbar/>
+    
+    
     <div className="bg-white font-montserrat min-h-screen text-black">
       {/* Title */}
       {/* Minimalist Title */}
 <section className="w-[75vw] mx-auto pt-24 pb-10 text-left">
   <h1
-    className="text-[clamp(2.5rem,5vw,4rem)] font-regular tracking-tight leading-snug text-neutral-800"
+    className="text-[clamp(2.5rem,5vw,4rem)] font-regular tracking-tight leading-snug text-neutral-800 mb-[5vh]"
     ref={wordRef}
   >
     {project.title}
@@ -147,7 +155,7 @@ const stats = [
     ref={imageRef}
     src={project.image}
     alt={project.title}
-    className="w-[67vw] object-cover h-[60vh] md:h-[70vh]"
+    className=" object-cover h-[60vh] md:h-[70vh] w-[62vw]"
   />
 </div>
 
@@ -200,36 +208,37 @@ const stats = [
 
     <div className="grid sm:grid-cols-2 gap-y-24 gap-x-12">
       {relatedProjects.map((proj, idx) => (
-        <div
-          key={idx}
-          className="group relative cursor-pointer hover:-translate-y-2 transition-transform duration-500 ease-out"
-        >
-          <div className="relative w-full aspect-[3/2] overflow-hidden rounded-[1.25rem] border border-neutral-300">
-            <img
-              src={proj.image}
-              alt={proj.title}
-              className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
-            />
-          </div>
+  <Link
+    key={idx}
+    to={`/projects/${proj.slug}`}
+    className="group relative block cursor-pointer hover:-translate-y-2 transition-transform duration-500 ease-out"
+  >
+    <div className="relative w-full aspect-[3/2] overflow-hidden rounded-[1.25rem] border border-neutral-300">
+      <img
+        src={proj.image}
+        alt={proj.title}
+        className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-[1.05]"
+      />
+    </div>
+    <div className="mt-6 flex flex-col gap-2">
+      <h3 className="text-xl font-semibold tracking-tight text-neutral-900">
+        {proj.title}
+      </h3>
+      <p className="text-sm text-neutral-500 leading-snug line-clamp-2">
+        {proj.description}
+      </p>
+    </div>
+    <div className="absolute -top-5 -left-5 w-5 h-5 bg-black group-hover:bg-neutral-800 transition-all duration-300 rounded-full" />
+  </Link>
+))}
 
-          <div className="mt-6 flex flex-col gap-2">
-            <h3 className="text-xl font-semibold tracking-tight text-neutral-900">
-              {proj.title}
-            </h3>
-            <p className="text-sm text-neutral-500 leading-snug line-clamp-2">
-              {proj.description}
-            </p>
-          </div>
-
-          {/* playful shape */}
-          <div className="absolute -top-5 -left-5 w-5 h-5 bg-black group-hover:bg-neutral-800 transition-all duration-300 rounded-full" />
-        </div>
-      ))}
     </div>
   </section>
 )}
 
     </div>
+    <Footer/>
+    </>
   );
 };
 

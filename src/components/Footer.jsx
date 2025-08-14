@@ -68,7 +68,7 @@ const Footer = () => {
         {/* CTA */}
         <div className="text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
           <h2 className="text-2xl md:text-4xl font-semibold tracking-tight leading-tight">
-            You Heard <span className="text-blue-600">ENOUGH?</span>
+            You Heard <br/><span className="text-blue-600 text-3xl md:text-5xl ">ENOUGH?</span>
           </h2>
           <Link
             to="/contact"

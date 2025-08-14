@@ -13,17 +13,15 @@ const BlogCard = ({ blog }) => {
     if (cardRef.current) {
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.7,
+          duration: 0.6,
           ease: "power2.out",
           scrollTrigger: {
             trigger: cardRef.current,
             start: "top 85%",
-            toggleActions: "play none none none",
           },
         }
       );
@@ -33,24 +31,37 @@ const BlogCard = ({ blog }) => {
   return (
     <div
       ref={cardRef}
-      className="rounded-2xl border border-gray-200 p-5 bg-white shadow-sm hover:shadow-md duration-300 text-black font-['Montserrat'] flex flex-col"
+      className="font-montserrat flex flex-col bg-white rounded-2xl p-6  hover:border-[#0047FF] transition-colors duration-300"
     >
-      <img
-        src={blog.image}
-        alt={blog.title}
-        className="rounded-xl w-full h-44 object-cover mb-4"
-      />
-
-      <div className="flex-1">
-        <h2 className="text-lg sm:text-xl font-semibold mb-2">{blog.title}</h2>
-        <p className="text-gray-600 text-sm sm:text-base mb-5">{blog.description}</p>
-      </div>
-
-      <Link to={`/blogs/${blog.id}`} className="mt-auto">
-        <button className="bg-[#0047FF] text-white px-5 py-2 text-sm rounded-full hover:bg-black transition-all duration-300">
-          Read More →
-        </button>
+      {/* Image */}
+      <Link to={`/blogs/${blog.id}`} className="block overflow-hidden rounded-xl">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+        />
       </Link>
+
+      {/* Text */}
+      <div className="mt-6 flex flex-col flex-1 gap-4">
+        <Link to={`/blogs/${blog.id}`}>
+          <h2 className="text-xl font-semibold text-neutral-900 leading-snug hover:text-[#0047FF] transition-colors">
+            {blog.title}
+          </h2>
+        </Link>
+
+        <p className="text-neutral-600 text-sm leading-relaxed flex-1">
+          {blog.description}
+        </p>
+
+        {/* Read More */}
+        <Link
+          to={`/blogs/${blog.id}`}
+          className="text-[#0047FF] text-sm font-medium hover:underline inline-flex items-center gap-1"
+        >
+          Read More →
+        </Link>
+      </div>
     </div>
   );
 };

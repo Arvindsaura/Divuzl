@@ -11,6 +11,7 @@ import BlogDetail from "./pages/BlogDetail";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Contact from "./pages/Contact";
+import Team from "./pages/Team";
 
 const AllRoutes = () => (
   <Routes>
@@ -25,6 +26,8 @@ const AllRoutes = () => (
     <Route path="projects" element={<Projects />} />
     <Route path="projects/:id" element={<ProjectDetail />} />
     <Route path="blogs" element={<Blogs />} />
+    <Route path="team" element={<Team />} />
+    
     <Route path="blogs/:id" element={<BlogDetail />} />
   </Routes>
 );

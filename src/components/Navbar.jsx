@@ -79,6 +79,7 @@ const Navbar = () => {
         <h1
           ref={logoRef}
           className="text-2xl font-bold text-[#0047FF] tracking-wider"
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
         >
           DIVUZL
         </h1>
@@ -92,6 +93,7 @@ const Navbar = () => {
             <li><NavLink to="/contact" text="Contact" /></li>
             <li><NavLink to="/services" text="Services" /></li>
             <li><NavLink to="/projects" text="Projects" /></li>
+            <li><NavLink to="/team" text="Team" /></li>
           </ul>
 
           <div className="flex items-center gap-4 ml-6">
@@ -111,7 +113,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden focus:outline-none"
@@ -136,6 +138,7 @@ const Navbar = () => {
           <NavLink to="/contact" text="Contact" />
           <NavLink to="/services" text="Services" />
           <NavLink to="/projects" text="Projects" />
+          <NavLink to="/team" text="Team" />
           {isSignedIn ? (
             <div className="flex items-center gap-3">
               <UserButton afterSignOutUrl="/" />
@@ -155,4 +158,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;  

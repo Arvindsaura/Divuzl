@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const steps = [
   {
@@ -41,26 +41,52 @@ const Workflow = () => {
   const currentIndex = useRef(0);
   const [cursorImage, setCursorImage] = useState(cursorImages[0]);
 
+  // Scroll-triggered fade + slide + scale for steps
   useEffect(() => {
     stepsRef.current.forEach((step, i) => {
+      gsap.set(step, { opacity: 0, y: 80, scale: 0.98 });
+
       gsap.fromTo(
         step,
-        { opacity: 0, y: 80 },
+        { opacity: 0, y: 80, scale: 0.98 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 1,
           ease: "power3.out",
+          delay: i * 0.1,
           scrollTrigger: {
             trigger: step,
             start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
+            toggleActions: "play reverse play reverse",
+          },
         }
       );
     });
   }, []);
 
+  // Hover tilt + scale effect for each step
+  useEffect(() => {
+    stepsRef.current.forEach((step) => {
+      step.addEventListener("mousemove", (e) => {
+        const rect = step.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 4;
+        const rotateY = ((x - centerX) / centerX) * 4;
+        gsap.to(step, { rotateX, rotateY, scale: 1.02, duration: 0.3 });
+      });
+
+      step.addEventListener("mouseleave", () => {
+        gsap.to(step, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.5 });
+      });
+    });
+  }, []);
+
+  // Cursor movement effect
   useEffect(() => {
     const section = sectionRef.current;
 
@@ -102,11 +128,18 @@ const Workflow = () => {
     };
   }, []);
 
+  // Update cursor image
   useEffect(() => {
     if (cursorRef.current) {
       cursorRef.current.style.backgroundImage = `url(${cursorImage})`;
     }
   }, [cursorImage]);
+
+  // Optional ScrollSmoother
+  useEffect(() => {
+    const smoother = ScrollSmoother.create({ smooth: 1.2, effects: true });
+    return () => smoother.kill();
+  }, []);
 
   return (
     <div
@@ -121,7 +154,8 @@ const Workflow = () => {
         How do we work?
       </div>
 
-     <div className="flex flex-col gap-24 relative z-10">
+      {/* Steps */}
+      <div className="flex flex-col gap-24 relative z-10">
         {steps.map((step, index) => (
           <div
             key={index}
@@ -151,12 +185,7 @@ const Workflow = () => {
         ))}
       </div>
 
-      {/* Floating Cursor */}
-      <div
-        ref={cursorRef}
-        className="absolute top-0 left-0 w-[180px] h-[120px] bg-contain bg-no-repeat bg-center pointer-events-none z-[999] opacity-0"
-        style={{ transform: "translate(-50%, -50%)" }}
-      ></div>
+    
     </div>
   );
 };

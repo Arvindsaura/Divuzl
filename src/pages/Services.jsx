@@ -4,6 +4,7 @@ import services from "../data/services";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FeatureCarousel from "../components/FeatureCarousel";
+import Footer from "../components/Footer";
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
@@ -84,6 +85,7 @@ const Services = () => {
   }, []);
 
   return (
+    <>
     <div ref={sectionRef} className="min-h-screen bg-white text-black font-[Montserrat]">
       {/* === HEADER === */}
       <div className="px-[12.5vw] pt-24 pb-10 ">
@@ -149,6 +151,8 @@ const Services = () => {
         }
       `}</style>
     </div>
+    <Footer/>
+    </>
   );
 };
 

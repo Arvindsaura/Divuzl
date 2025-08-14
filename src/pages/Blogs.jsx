@@ -2,12 +2,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
+import { Link } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import blogs from "../data/blogs";
-import "../index.css";
 import Footer from "../components/Footer";
+import "../index.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Blog = () => {
   const featuredRef = useRef(null);
@@ -15,7 +16,6 @@ const Blog = () => {
   const gridRef = useRef(null);
 
   useEffect(() => {
-    // Minimal scroll animation for major sections
     [featuredRef, subscribeRef, gridRef].forEach((ref) => {
       if (ref.current) {
         gsap.fromTo(
@@ -35,135 +35,129 @@ const Blog = () => {
         );
       }
     });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
   return (
-    <div className="relative px-[12.5vw] py-16 font-montserrat space-y-24 bg-black text-white overflow-hidden">
-      {/* 🔵 Parallax-style blur div */}
-      <div className="absolute top-[20vh] left-0 w-[30vw] h-[30vh] bg-blue-800/30 blur-[100px] rounded-full z-0" />
+    <div className="relative bg-white text-neutral-900 font-montserrat overflow-hidden">
+      {/* 🔵 Minimal floating blue shape */}
+      <div className="absolute top-[20vh] left-[10vw] w-[25vw] h-[25vw] bg-blue-500/10 blur-[120px] rounded-full z-0" />
 
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between w-full gap-4 relative z-10">
-        <div className="bg-white text-black text-xs font-semibold py-1 px-4 rounded-full shadow-md">
+      <header className="px-[12.5vw] pt-28 pb-12 relative z-10 flex flex-col gap-3">
+        <span className="bg-blue-500/10 text-blue-700 text-xs font-semibold py-1 px-4 rounded-full w-fit">
           Blogs
+        </span>
+        <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight">
+          Newsroom
+        </h1>
+        <p className="text-neutral-500 max-w-md">
+          News and resources from the frontiers of digital marketing
+        </p>
+      </header>
+
+      {/* Featured Blog */}
+      <section
+        ref={featuredRef}
+        className="px-[12.5vw] relative z-10"
+      >
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch bg-neutral-50 rounded-3xl overflow-hidden border border-neutral-200">
+          {/* Text */}
+          <div className="p-8 flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase text-blue-500 mb-2">Insight</p>
+              <h2 className="text-2xl md:text-3xl font-bold leading-tight">
+                Why Your Business Needs Digital Marketing in 2025
+              </h2>
+              <p className="mt-3 text-neutral-600">
+                Discover how the digital shift is reshaping customer engagement and growth.
+              </p>
+            </div>
+            <p className="text-xs mt-6 text-neutral-400">July 12, 2025</p>
+          </div>
+          {/* Image */}
+          <div className="w-full h-full">
+            <img
+              src="/images/newsroom-main.jpg"
+              alt="Newsroom Visual"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
-        <div className="text-right space-y-2 min-w-[200px]">
-          <h1 className="text-4xl md:text-5xl font-bold mt-[5vw]">Newsroom</h1>
-          <p className="text-sm md:text-base text-gray-400 max-w-sm">
-            News and resources from the frontiers of digital marketing
-          </p>
-        </div>
-      </div>
-
-     <div
-  ref={featuredRef}
-  className="flex flex-col lg:flex-row bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg relative z-10"
->
-  <div className="flex-1 p-6 flex flex-col justify-between min-h-[300px]">
-    <div>
-      <p className="text-xs uppercase text-blue-400 mb-2">Insight</p>
-      <h2 className="text-xl md:text-2xl font-bold mb-2 leading-tight">
-        Why Your Business Needs Digital Marketing in 2025
-      </h2>
-      <p className="text-sm md:text-base text-gray-300">
-        Discover how the digital shift is reshaping customer engagement and growth.
-      </p>
-    </div>
-    <p className="text-xs mt-4 text-gray-500">July 12, 2025</p>
-  </div>
-
-  <div className="w-full lg:w-1/2 aspect-[16/10] lg:aspect-auto">
-    <img
-      src="/images/newsroom-main.jpg"
-      alt="Newsroom Visual"
-      className="w-full h-full object-cover"
-    />
-  </div>
-</div>
-
+      </section>
 
       {/* Most Loved */}
-      <div>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-white">
+      <section className="px-[12.5vw] py-20 relative z-10">
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-semibold">
             Most Loved by Our Readers
           </h2>
-          <p className="text-sm text-blue-500 cursor-pointer hover:underline">
+          <Link
+            to="/blogs"
+            className="text-sm text-blue-600 hover:underline"
+          >
             Read now...
-          </p>
+          </Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.01] transition-all duration-300 ease-in-out">
-            <img
-              src="/images/popular1.png"
-              alt="Loved Blog 1"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.01] transition-all duration-300 ease-in-out">
-            <img
-              src="/images/popular2.png"
-              alt="Loved Blog 2"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Subscribe Section */}
-<div
-  ref={subscribeRef}
-  className="p-6 bg-gray-100 rounded-xl shadow-inner text-center space-y-4 text-gray-800 relative z-10"
->
-  <h2 className="text-2xl md:text-3xl font-bold">Subscribe to Our Newsletter</h2>
-  <p className="text-sm md:text-base">
-    Get the latest blogs delivered straight to your inbox.
-  </p>
-
-  {/* ✅ Add Formspree form */}
-  <form
-    action="https://formspree.io/f/xovlkqyp"
-    method="POST"
-    className="flex flex-col sm:flex-row items-center justify-center gap-4"
-  >
-    <input
-      type="email"
-      name="email"
-      placeholder="Enter your email"
-      required
-      className="p-2 rounded-full w-full sm:w-72 border border-gray-400 focus:outline-none"
-    />
-    <button
-      type="submit"
-      className="bg-black text-white py-2 px-6 rounded-full hover:bg-gray-800 font-terrat text-sm md:text-base"
-    >
-      Subscribe
-    </button>
-  </form>
-</div>
-
-
-      {/* All Blogs Grid */}
-      <div ref={gridRef}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogs.map((blog, index) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {["/images/popular1.png", "/images/popular2.png"].map((img, i) => (
             <div
-  key={blog.id}
-  className="blog-card bg-[#1a1a1a] rounded-xl overflow-hidden shadow-lg flex flex-col h-full hover:scale-[1.01] transition-all duration-300 ease-in-out"
->
-  <div className="flex flex-col justify-between h-full">
-    <BlogCard blog={blog} index={index} />
-  </div>
-</div>
-
+              key={i}
+              className="rounded-2xl overflow-hidden border border-neutral-200 hover:scale-[1.02] transition-transform duration-300 ease-in-out"
+            >
+              <img src={img} alt={`Loved Blog ${i + 1}`} className="w-full h-full object-cover" />
+            </div>
           ))}
         </div>
-      </div>
-    
+      </section>
+
+      {/* Subscribe Section */}
+      <section
+        ref={subscribeRef}
+        className="px-[12.5vw] pb-20 relative z-10"
+      >
+        <div className="p-10 bg-neutral-50 rounded-3xl border border-neutral-200 text-center space-y-4">
+          <h2 className="text-2xl md:text-3xl font-bold">Subscribe to Our Newsletter</h2>
+          <p className="text-neutral-600">
+            Get the latest blogs delivered straight to your inbox.
+          </p>
+          <form
+            action="https://formspree.io/f/xovlkqyp"
+            method="POST"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              className="p-3 rounded-full w-full sm:w-72 border border-neutral-300 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* All Blogs Grid */}
+      <section ref={gridRef} className="px-[12.5vw] pb-28 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.map((blog, index) => (
+            <div
+              key={blog.id}
+              className="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-200 hover:scale-[1.02] transition-transform duration-300"
+            >
+              <BlogCard blog={blog} index={index} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 };

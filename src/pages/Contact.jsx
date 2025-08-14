@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import DecryptedText from "../components/DecryptedText";
+import Footer from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -60,6 +61,7 @@ export default function Contact() {
   }, []);
 
   return (
+    <>
     <div className="w-full min-h-screen bg-white text-neutral-900 py-16 md:py-24 px-6 md:px-[10vw] space-y-24 md:space-y-32">
 
       {/* Tagline */}
@@ -179,12 +181,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Micro Manifesto */}
-          <div className="bg-[#f7f7f7] p-6 rounded-2xl text-center parallax">
-            <p className="text-[15px] text-neutral-600 italic max-w-sm mx-auto animate-text">
-              We don’t just build interfaces — we build emotional impact. Let’s create something bold, usable, and memorable.
-            </p>
-          </div>
+         
         </div>
       </div>
 
@@ -203,7 +200,7 @@ export default function Contact() {
       </div>
 
       {/* Final CTA Stripe */}
-      <div className="mt-20 md:mt-24 text-center bg-[#fafafa] px-6 py-12 md:py-14 rounded-3xl border border-neutral-200 shadow-sm parallax">
+      <div className="mt-20 md:mt-24 text-center px-6 py-12 md:py-14 rounded-3xl  parallax">
         <h2 className="text-xl md:text-2xl font-semibold mb-3 animate-text">Let’s create your next breakthrough.</h2>
         <p className="text-sm text-neutral-500 mb-6 animate-text">We’re ready when you are.</p>
         <a
@@ -214,5 +211,8 @@ export default function Contact() {
         </a>
       </div>
     </div>
+    <Footer/>
+    </>
+
   );
 }

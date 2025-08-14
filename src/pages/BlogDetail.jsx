@@ -159,9 +159,9 @@ const BlogDetail = () => {
         <div className="md:w-1/2 w-full">
           <h2
             ref={headingSplitRef}
-            className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-4xl font-regular mb-6 leading-tight"
           >
-            Built Different. Designed for the Future.
+            Built Different,<br/>Designed for the Future.
           </h2>
           <p
             ref={paragraphRef}
@@ -173,26 +173,23 @@ const BlogDetail = () => {
           </p>
         </div>
         <div className="md:w-1/2 w-full">
-          <div className="rounded-3xl overflow-hidden">
-            <video
-              src="/images/blogdet.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full object-cover h-[300px] md:h-[500px]"
-            />
-          </div>
+<div className="rounded-3xl overflow-hidden w-[30vw] h-[30vh]">
+  <img
+    src="https://i.pinimg.com/1200x/71/dc/0f/71dc0f02ac6f9179fa3791ffd5ba2304.jpg"
+    className="w-full h-full object-cover"
+    alt="Preview"
+  />
+</div>
         </div>
       </section>
 
       {/* More Blogs */}
-      <section className="px-[12vw] py-20 bg-[#F8FAFF] rounded-t-[2rem]">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Loved This? Here Are More Blogs You’ll Definitely Enjoy
+      <section className="px-[12vw] py-20  rounded-t-[2rem]">
+        <h2 className="text-3xl md:text-4xl font-regular mb-4">
+          Loved This? <br/>Here Are More Blogs You’ll Definitely Enjoy
         </h2>
         {/* Floating Background Light */}
-      <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full bg-[#C5D6FF] blur-[100px] opacity-40 -z-10" />
+      <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full  blur-[100px] opacity-40 -z-10" />
 
       <BlogSection />
       </section>
