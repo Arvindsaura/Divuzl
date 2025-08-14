@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <SmoothLayout>
-        <main className="min-h-[80vh]">
+        <main className="min-h-[80vh] dm-sans-heading">
           <AllRoutes />
         </main>
        

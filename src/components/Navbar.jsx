@@ -33,7 +33,7 @@ const Navbar = () => {
           setMenuOpen(false);
         }
       }}
-      className="relative text-sm uppercase tracking-wide font-medium text-gray-800 hover:text-[#0047FF] transition-all duration-300"
+      className="relative text-sm uppercase tracking-wide font-medium text-white hover:text-[#0047FF] transition-all duration-300"
     >
       <span className="hover-underline">{text}</span>
     </button>
@@ -73,19 +73,20 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      className="w-full py-5 border-b border-gray-200 bg-white z-30 fixed top-0 left-0"
+      className="w-75vw py-5 bg-black text-white fixed top-0 left-0 z-30 pl-[3vw]  dm-sans-heading "
     >
-      <div className="mx-[15vw] flex justify-between items-center">
+      <div className="w-[100vw] flex justify-between items-center px-8">
+        {/* Logo */}
         <h1
           ref={logoRef}
-          className="text-2xl font-bold text-[#0047FF] tracking-wider"
-          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          className="text-2xl font-bold  tracking-wider "
+         
         >
-          DIVUZL
+          Divuzl
         </h1>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items- gap-5">
           <ul className="flex gap-6">
             <li><NavLink to="/" text="Home" /></li>
             <li><NavLink text="About Us" onClick={scrollToAbout} /></li>
@@ -119,7 +120,13 @@ const Navbar = () => {
           className="md:hidden focus:outline-none"
           aria-label="Toggle Menu"
         >
-          <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -131,7 +138,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="md:hidden mt-4 px-[15vw] space-y-4 pb-4">
+        <div className="md:hidden mt-4 px-8 space-y-4 pb-4">
           <NavLink to="/" text="Home" />
           <NavLink text="About Us" onClick={() => { scrollToAbout(); setMenuOpen(false); }} />
           <NavLink to="/blogs" text="News" />
@@ -158,4 +165,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;  
+export default Navbar;

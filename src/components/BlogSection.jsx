@@ -88,7 +88,7 @@ const BlogSection = () => {
   }, []);
 
   return (
-    <section className="bg-white  w-[75vw] mx-auto">
+    <section className="bg-white  w-[75vw] mx-auto dm-sans-heading">
 
       {/* Pill */}
       <div className="mb-4 flex justify-end">

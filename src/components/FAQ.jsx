@@ -112,7 +112,7 @@ const FAQ = () => {
   }, []);
 
   return (
-   <section className="bg-white py-24 w-[90vw] sm:w-[85vw] lg:w-[75vw] mx-auto px-4 sm:px-6">
+   <section className="bg-white py-24 w-[90vw] sm:w-[85vw] lg:w-[75vw] mx-auto px-4 sm:px-6 dm-sans-heading">
 
 
       {/* Tag */}
@@ -125,7 +125,7 @@ const FAQ = () => {
       {/* Heading */}
       <h2
         ref={headingRef}
-        className="text-3xl md:text-4xl font-bold mb-10 leading-tight"
+        className="text-5xl md:text-5xl font-bold mb-10 leading-tight"
       >
         Got Questions? We’ve Got Answers
       </h2>

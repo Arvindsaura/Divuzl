@@ -135,18 +135,18 @@ const Clients = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 overflow-hidden bg-white font-[Montserrat] px-[12.5vw]"
+      className="relative py-24 overflow-hidden bg-white dm-sans-heading px-[12.5vw]"
     >
       {/* Label */}
       <div ref={labelRef} className="absolute top-10 left-[12.5vw] z-20">
-        <div className="inline-block px-4 py-1 border border-[#0047FF] text-[#0047FF] rounded-full text-sm font-semibold animate-pulse bg-white/80 backdrop-blur-md">
+        <div className="inline-block px-4 py-1 border border-[#0047FF] text-[#0047FF] rounded-full text-sm font-semibold animate-pulse bg-white/80 backdrop-blur-md ">
           Clients
         </div>
       </div>
 
       {/* Heading */}
       <div ref={headingRef} className="relative z-10 text-left mb-4">
-        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">Our Clients</h2>
+        <h2 className="text-6xl sm:text-6xl font-bold text-gray-900 dm-sans-heading">Our Clients</h2>
       </div>
 
       {/* Subheading */}

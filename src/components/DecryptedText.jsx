@@ -8,7 +8,7 @@ export default function DecryptedText({
   sequential = false,
   revealDirection = 'start',
   useOriginalCharsOnly = false,
-  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+',
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi!@#$%^&*()_+',
   className = '',
   parentClassName = '',
   encryptedClassName = '',

@@ -144,11 +144,11 @@ const Workflow = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative bg-white text-black font-[Montserrat] px-[12.5vw] py-24 overflow-hidden"
+      className="relative bg-white text-black dm-sans-heading px-[12.5vw] py-24 overflow-hidden"
     >
       {/* Heading */}
-      <div className="text-5xl font-bold mb-20 relative z-10 w-fit">
-        <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide">
+      <div className="text-7xl font-bold mb-20 relative z-10 w-fit dm-sans-heading">
+        <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide  ">
           Workflow
         </p>
         How do we work?

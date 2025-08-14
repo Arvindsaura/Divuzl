@@ -86,7 +86,7 @@ const Services = () => {
 
   return (
     <>
-    <div ref={sectionRef} className="min-h-screen bg-white text-black font-[Montserrat]">
+    <div ref={sectionRef} className="min-h-screen bg-white text-black dm-sans-heading ">
       {/* === HEADER === */}
       <div className="px-[12.5vw] pt-24 pb-10 ">
         <h1 className="text-4xl md:text-6xl font-bold animate-text leading-tight tracking-tight mt-10">

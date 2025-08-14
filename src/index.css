@@ -67,3 +67,102 @@ body {
 .hover-letter-animation:hover .char:nth-child(even) {
   transform: scaleX(0.8);
 }
+.libertinus-serif-regular {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libertinus-serif-semibold {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.libertinus-serif-bold {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libertinus-serif-regular-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.libertinus-serif-semibold-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.libertinus-serif-bold-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.libertinus-serif-regular {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libertinus-serif-semibold {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.libertinus-serif-bold {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libertinus-serif-regular-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.libertinus-serif-semibold-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.libertinus-serif-bold-italic {
+  font-family: "Libertinus Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+    font-family: "Bower-Bold";
+    src: url("/fonts/Bower-Bold.woff2") format("woff2"),
+         url("/fonts/Bower-Bold.woff") format("woff"),
+         url("/fonts/Bower-Bold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Optional: create a class you can reuse */
+.bower-font {
+    font-family: "Bower-Bold", sans-serif;
+}
+.dm-sans-heading {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.dm-sans-body-italic {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+

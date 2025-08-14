@@ -68,7 +68,7 @@ const Home = () => {
       <div className="flex justify-end px-[12.5vw] mb-16">
         <h2
           ref={titleRef}
-          className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight text-right font-terrat"
+          className="text-5xl sm:text-5xl font-bold text-gray-900 leading-tight text-right font-terrat dm-sans-heading"
         >
           We Write What Works: <br />
           Tips, Tricks & Truths <br />

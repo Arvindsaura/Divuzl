@@ -156,20 +156,20 @@ const Abouth = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 px-[12.5vw] text-center text-black bg-white"
+      className="py-16 px-[12.5vw] text-center text-black bg-white dm-sans-heading "
       id="about"
     >
       <p className="text-xs border w-fit border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-full font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 animate-text">
         About Us
       </p>
 
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0047FF] text-left w-full animate-text">
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0047FF] text-left w-full animate-text  dm-sans-heading">
         Who We Are?
       </h2>
 
       <div className="flex flex-col md:flex-row justify-between gap-8 my-10 animate-text">
         <div className="md:w-1/2 text-left">
-          <p className="text-lg md:text-xl font-semibold text-gray-900 leading-tight">
+          <p className="text-lg md:text-xl font-semibold text-gray-900 leading-tight dm-sans-heading">
             Providing the best services with <br /> out-of-the-box ideas.
           </p>
         </div>
