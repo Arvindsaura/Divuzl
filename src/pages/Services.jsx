@@ -151,7 +151,7 @@ const Services = () => {
         }
       `}</style>
     </div>
-    <Footer/>
+    
     </>
   );
 };
