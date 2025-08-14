@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const founder = {
   name: "Devang Vikram Singh",
   role: "MD & CEO",
-  image: "https://placehold.co/720x820?text=Devang+Vikram+Singh",
+  image: "/images/founder_img.jpg",
   about: [
     "Devang Vikram Singh began his entrepreneurial journey with a clear vision: create solutions that empower businesses to grow without limits. His first step was building marketing and digital strategies for small brands, starting with close contacts and local businesses. Over time, this evolved into providing full-stack business development and consultancy for clients across multiple industries.",
     "Along the way, he saw a recurring challenge: while opportunities are vast, most businesses struggle to connect all the dots — from company setup to branding, technology, marketing, and sales. The variety of services and platforms can be overwhelming, and business owners often lack the time or resources to make them work together seamlessly.",
@@ -88,7 +88,7 @@ export default function Team() {
           {/* Founder Section */}
           <div className="flex flex-col md:flex-row gap-8 mb-20 items-start">
             {/* Founder Image */}
-            <div className="gsap-img w-full md:w-1/2 h-64 sm:h-80 md:h-[500px] bg-gray-100 rounded-2xl overflow-hidden">
+            <div className="gsap-img w-full md:w-1/2 h-64 sm:h-80 md:h-[87vh] bg-gray-100 rounded-2xl overflow-hidden">
               <img
                 src={founder.image}
                 alt={founder.name}
