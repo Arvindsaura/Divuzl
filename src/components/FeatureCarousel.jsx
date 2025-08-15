@@ -31,7 +31,7 @@ const FeatureCarousel = ({ services, navigate }) => {
             <div className="absolute inset-0 bg-black/30 group-hover:bg-[#0047FF]/80 transition duration-500 flex items-end p-6">
               <div className="text-white space-y-2">
                 <h3 className="text-2xl font-semibold">{service.title}</h3>
-                <p className="text-sm">{service.description}</p>
+                <p className="text-sm dm-sans-body">{service.description}</p>
               </div>
             </div>
           </div>

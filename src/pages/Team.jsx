@@ -19,7 +19,7 @@ const founder = {
 const developer = {
   name: "Arvind Puri",
   role: "Developer",
-  image: "https://placehold.co/300x300?text=Arvind+Puri",
+  image: "/images/developer_img.jpg",
   note:
     "This website was designed and developed by Arvind Puri with a focus on clarity, performance, and a clean reading experience.",
 };
@@ -78,7 +78,7 @@ export default function Team() {
             </div>
           </div>
 
-          <h1 className="text-5xl font-light mb-4 text-gray-900">Meet our team</h1>
+          <h1 className="text-5xl md:text-6xl font-light mb-4 text-gray-900">Meet our team</h1>
           <p className="text-gray-600 mb-10 max-w-2xl">
             Meet our exceptional team at Divuzl! Comprising diverse talents and
             expertise, we are a dedicated group committed to delivering excellence
@@ -86,48 +86,69 @@ export default function Team() {
           </p>
 
           {/* Founder Section */}
-          <div className="flex flex-col md:flex-row gap-8 mb-20 items-start">
-            {/* Founder Image */}
-            <div className="gsap-img w-full md:w-1/2 h-64 sm:h-80 md:h-[87vh] bg-gray-100 rounded-2xl overflow-hidden">
-              <img
-                src={founder.image}
-                alt={founder.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Founder Section */}
+<div className="flex flex-col lg:flex-row gap-8 mb-20 items-start">
+  {/* Founder Image */}
+  <div className="gsap-img w-full lg:w-1/2 h-64 sm:h-80 lg:h-[50vh] bg-gray-100 rounded-2xl overflow-hidden">
+    <img
+      src={founder.image}
+      alt={founder.name}
+      className="w-full h-full object-cover"
+    />
+  </div>
 
-            {/* Founder Text */}
-            <div className="gsap-text w-full md:w-1/2 text-left flex flex-col justify-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">{founder.name}</h2>
-              <p className="text-blue-600 font-medium mb-4">{founder.role}</p>
-              {founder.about.map((p, idx) => (
-                <p key={idx} className="text-gray-700 leading-relaxed mb-4 text-sm sm:text-base md:text-lg">
-                  {p}
-                </p>
-              ))}
-            </div>
-          </div>
+  {/* Founder Text */}
+  <div className="gsap-text w-full lg:w-1/2 text-left flex flex-col justify-center mt-6 lg:mt-0">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">{founder.name}</h2>
+    <p className="text-blue-600 font-regular mb-4">{founder.role}</p>
+    {founder.about.map((p, idx) => (
+      <p key={idx} className="text-gray-700 leading-relaxed mb-4 text-sm sm:text-base md:text-lg dm-sans-body">
+        {p}
+      </p>
+    ))}
+  </div>
+</div>
 
-          {/* Developer Credit */}
-          <div className="gsap-dev border-t border-black/10 pt-10 flex flex-col md:flex-row items-start gap-5">
-            <img
-              src={developer.image}
-              alt={developer.name}
-              className="w-16 h-16 rounded-full object-cover"
-            />
-            <div>
-              <p className="text-sm text-gray-600">Meet the Developer</p>
-              <p className="text-[15px] font-medium text-gray-900">
-                {developer.name} — {developer.role}
-              </p>
-              <p className="mt-2 text-gray-700 text-[15px] leading-6 max-w-[60ch]">
-                {developer.note}
-              </p>
-            </div>
-          </div>
+{/* Developer Section */}
+<div className="gsap-dev relative pt-24 pb-24 flex flex-col lg:flex-row items-start gap-12">
+  {/* Left: Small Image */}
+  <div className="flex-shrink-0">
+    <img
+      src={developer.image}
+      alt={developer.name}
+      className="w-20 h-20 rounded-full object-cover shadow-md"
+    />
+  </div>
+
+  {/* Right: Text */}
+  <div className="flex-1 flex flex-col justify-center">
+    <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-4">
+      Meet the Developer
+    </h1>
+
+    <div className="mb-4">
+  <a
+    href="https://my-portfolio-zeta-six-85.vercel.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:underline"
+  >
+    <p className="text-2xl font-semibold text-gray-900">{developer.name}</p>
+  </a>
+  <p className="text-blue-600 text-lg">{developer.role}</p>
+</div>
+
+
+    <p className="text-gray-700 text-base leading-relaxed max-w-[65ch] dm-sans-body">
+      {developer.note}
+    </p>
+  </div>
+</div>
+
+
         </div>
       </section>
-      <Footer />
+   
     </>
   );
 }

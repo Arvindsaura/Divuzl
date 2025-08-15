@@ -9,12 +9,12 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <SmoothLayout>
-        <main className="min-h-[80vh] dm-sans-heading">
+        <main className=" dm-sans-heading">
           <AllRoutes />
         </main>
-       
-      </SmoothLayout>
        <Footer /> 
+      </SmoothLayout>
+       
     </BrowserRouter>
   );
 }

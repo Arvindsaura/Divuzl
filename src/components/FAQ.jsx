@@ -125,7 +125,7 @@ const FAQ = () => {
       {/* Heading */}
       <h2
         ref={headingRef}
-        className="text-5xl md:text-5xl font-bold mb-10 leading-tight"
+        className="text-5xl md:text-6xl font-bold mb-10 leading-tight"
       >
         Got Questions? We’ve Got Answers
       </h2>

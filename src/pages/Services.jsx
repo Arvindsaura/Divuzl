@@ -97,7 +97,7 @@ const Services = () => {
             <span className="bg-[#0047FF] text-white px-3 py-1 rounded-lg">reliable</span> services built around you.
           </div>
         </h1>
-        <p className="text-lg md:text-xl mt-10 animate-text max-w-xl">
+        <p className="text-lg md:text-xl mt-10 animate-text max-w-xl dm-sans-body">
           We listen carefully, work honestly, and focus on getting things done right.
         </p>
       </div>
@@ -127,7 +127,7 @@ const Services = () => {
                   backgroundPosition: "center",
                 }}
               />
-              <div className="absolute inset-0 bg-[#0047FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 text-white text-center text-lg">
+              <div className="absolute inset-0 bg-[#0047FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 text-white text-center text-lg dm-sans-body">
                 {service.description}
               </div>
             </div>

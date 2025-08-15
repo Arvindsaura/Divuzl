@@ -81,7 +81,7 @@ export default function Contact() {
               text={`Let’s build\nsomething cool\ntogether.`}
               speed={90}
               maxIterations={18}
-              characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+              characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabca1234567890"
               className="revealed"
               parentClassName="text-3xl lg:text-5xl font-light tracking-tight leading-snug whitespace-pre-line"
               encryptedClassName="encrypted"
@@ -91,7 +91,7 @@ export default function Contact() {
           {state.succeeded ? (
             <p className="text-green-600 text-base font-medium">Thanks! Your message has been sent.</p>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 text-sm">
+            <form onSubmit={handleSubmit} className="space-y-6 text-sm montserrat-regular">
               <div className="relative group">
                 <input
                   id="name"
@@ -99,7 +99,7 @@ export default function Contact() {
                   type="text"
                   required
                   placeholder="Your name"
-                  className="w-full border-b border-neutral-300 bg-transparent py-2 focus:outline-none focus:border-black placeholder:text-neutral-400"
+                  className="w-full border-b border-neutral-300 bg-transparent py-2 focus:outline-none focus:border-black placeholder:text-neutral-400 font-montserrat"
                 />
               </div>
 
@@ -168,17 +168,24 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="animate-text">
-              <p className="text-neutral-500 uppercase text-xs tracking-widest mb-1">Instagram</p>
-              <a
-                href="https://instagram.com/divuzl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-[15px]"
-              >
-                @divuzl
-              </a>
-            </div>
+          <div className="animate-text">
+  <p className="text-neutral-500 uppercase text-xs tracking-widest mb-1">Instagram</p>
+  <a
+    href="https://instagram.com/divuzl"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 hover:opacity-80 transition"
+  >
+    <img
+      src="https://tse4.mm.bing.net/th/id/OIP.NUFU5mhqhqOr82Ge-CwjawHaHv?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+      alt="Instagram"
+      className="w-6 h-6"
+    />
+    <span>@Divuzl</span>
+  </a>
+</div>
+
+
           </div>
 
          
@@ -186,14 +193,14 @@ export default function Contact() {
       </div>
 
       {/* Why Us — Minimal Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center text-sm w-full max-w-5xl mx-auto pt-12 border-t border-neutral-200 parallax">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center text-sm w-full max-w-5xl mx-auto pt-12 border-t border-neutral-200 parallax dm-sans-body">
         {[
           { title: "Always Custom", desc: "No templates. No fluff. Just thoughtful design, built for you." },
           { title: "Tech-first", desc: "We blend creativity with performance — powered by code." },
           { title: "Real People", desc: "No agencies, no pipelines. You talk directly to the makers." },
         ].map((item, i) => (
           <div key={i} className="space-y-2 px-4 animate-text">
-            <h4 className="text-base font-medium text-black">{item.title}</h4>
+            <h4 className="text-base text-[20px] text-black">{item.title}</h4>
             <p className="text-neutral-500 text-sm">{item.desc}</p>
           </div>
         ))}

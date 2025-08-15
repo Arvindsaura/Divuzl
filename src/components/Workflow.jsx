@@ -147,10 +147,11 @@ const Workflow = () => {
       className="relative bg-white text-black dm-sans-heading px-[12.5vw] py-24 overflow-hidden"
     >
       {/* Heading */}
-      <div className="text-7xl font-bold mb-20 relative z-10 w-fit dm-sans-heading">
-        <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide  ">
+      <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide  ">
           Workflow
         </p>
+      <div className="text-5xl md:text-6xl font-bold mb-20 relative z-10 w-fit dm-sans-heading">
+        
         How do we work?
       </div>
 
@@ -169,7 +170,7 @@ const Workflow = () => {
               <h3 className="text-3xl font-semibold text-[#0047FF] mb-4 transition-all duration-300 hover:text-black hover:scale-[1.05] hover:uppercase">
                 {step.title}
               </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed dm-sans-body">
                 {step.text}
               </p>
             </div>

@@ -159,10 +159,23 @@ body {
   font-style: normal;
 }
 
-.dm-sans-body-italic {
+.dm-sans-body {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-style: italic;
+
 }
 
+.montserrat-regular {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* normal */
+  font-style: normal;
+}
+
+.montserrat-semibold {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600; /* semi-bold */
+  font-style: normal;
+}

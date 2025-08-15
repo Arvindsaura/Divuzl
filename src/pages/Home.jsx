@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother"; // ✅ Import
 
 import WhatWeDo from "../components/WhatWeDo";
 import Workflow from "../components/Workflow";
@@ -10,9 +11,8 @@ import FAQ from "../components/FAQ";
 import Test from "../components/Test";
 import Abouth from "../components/Abouth";
 import Hero from "../components/Hero";
-import Footer from "../components/Footer";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother); // ✅ Register both
 
 const Home = () => {
   const titleRef = useRef(null);
@@ -35,22 +35,36 @@ const Home = () => {
     );
   }, []);
 
- useEffect(() => {
+  useEffect(() => {
   const shouldScroll = sessionStorage.getItem("scrollToAbout");
 
   if (shouldScroll) {
-    const interval = setInterval(() => {
+    const tryScroll = () => {
       const section = document.getElementById("about");
 
-      if (section && window.ScrollSmoother && ScrollSmoother.get()) {
-        const smoother = ScrollSmoother.get();
-        smoother.scrollTo(section, true, "top top"); // GSAP's smooth scroll
+      if (section) {
+        if (ScrollSmoother.get()) {
+          // ✅ Smooth GSAP scroll
+          ScrollSmoother.get().scrollTo(section, true, "top top");
+        } else {
+          // ✅ Smooth native scroll
+          window.scrollTo({
+            top: section.getBoundingClientRect().top + window.scrollY,
+            behavior: "smooth"
+          });
+        }
         sessionStorage.removeItem("scrollToAbout");
-        clearInterval(interval);
+        return true;
       }
-    }, 200);
+      return false;
+    };
 
-    // Stop if too many attempts
+    // Wait for section + smoother to be ready
+    const interval = setInterval(() => {
+      if (tryScroll()) clearInterval(interval);
+    }, 100);
+
+    // Safety stop after 5s
     setTimeout(() => clearInterval(interval), 5000);
   }
 }, []);
@@ -59,27 +73,24 @@ const Home = () => {
   return (
     <main className="font-['Montserrat'] bg-white text-black">
       <Hero />
-      <Abouth  id="about"/>
+      {/* ✅ Make sure Abouth actually uses this id */}
+      <Abouth id="about" />
       <WhatWeDo />
       <Workflow />
       <Clients />
-
-      {/* Heading with GSAP scroll animation */}
       <div className="flex justify-end px-[12.5vw] mb-16">
         <h2
           ref={titleRef}
-          className="text-5xl sm:text-5xl font-bold text-gray-900 leading-tight text-right font-terrat dm-sans-heading"
+          className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight text-right font-terrat dm-sans-heading"
         >
           We Write What Works: <br />
           Tips, Tricks & Truths <br />
           from the Digital Space
         </h2>
       </div>
-
       <BlogSection />
       <FAQ />
       <Test />
-      <Footer/>
     </main>
   );
 };

@@ -1,136 +1,170 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { FaFacebookF, FaYoutube, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
-  const footerRef = useRef(null);
-  const columnsRef = useRef([]);
+  const socials = [
+    { icon: <FaInstagram />, name: "Instagram", handle: "divuzl", url: "https://instagram.com/divuzl" },
+    { icon: <FaLinkedinIn />, name: "LinkedIn", handle: "Divuzl", url: "https://linkedin.com/company/divuzl" },
+    { icon: <FaFacebookF />, name: "Facebook", handle: "Divuzl", url: "https://facebook.com/divuzl" },
+    { icon: <FaXTwitter />, name: "Twitter (X)", handle: "Divuzl", url: "https://x.com/divuzl" },
+    { icon: <FaYoutube />, name: "YouTube", handle: "divuzl", url: "https://youtube.com/@divuzl" },
+    { icon: <FaWhatsapp />, name: "WhatsApp", handle: "+91 9220660377", url: "https://wa.me/919220660377" },
+  ];
 
- 
+  const departments = [
+    "Marketing & Advertising",
+    "Creative & Design",
+    "Technology & Development",
+    "Content & Media Production",
+    "Legal & Compliance",
+    "Client Success & Strategy",
+    "SEO & Organic Growth",
+    "Social Media Marketing",
+    "Paid Advertising & Performance Marketing",
+    "Branding & Identity Development",
+    "Public Relations & Communications",
+    "Data & Analytics",
+    "Business Development & Partnerships",
+    "Product & Innovation",
+  ];
 
-  const sections = [
-    {
-      title: "COMPANY",
-      links: [
-        ["About Us", "/about"],
-        ["Our Services", "/services"],
-        ["How We Work", "/how-we-work"],
-        ["Blog", "/blogs"],
-        ["Careers", "/careers"],
-        ["Contact Us", "/contact"],
-      ],
-    },
-    {
-      title: "SERVICES",
-      links: [
-        ["SEO & Organic Growth", "/services/seo-growth"],
-        ["Social Media Marketing", "/services/social-media"],
-        ["Paid Advertising", "/services/paid-ads"],
-        ["Content Strategy", "/services/content-strategy"],
-        ["Branding & Design", "/services/branding"],
-        ["Web Development", "/services/web-development"],
-      ],
-    },
-    {
-      title: "LET’S CONNECT",
-      links: [
-        ["hello@divuzl.com", "mailto:hello@divuzl.com"],
-        ["+91-XXXXXXXXXX", "tel:+91XXXXXXXXXX"],
-      ],
-      extra: (
-        <p className="text-sm text-gray-500 mt-2 leading-snug">
-          Mumbai, India <br />
-          <span className="text-xs">(Available Globally 🌍)</span>
-        </p>
-      ),
-    },
-    {
-      title: "FOLLOW US",
-      links: [
-        ["Instagram", "https://instagram.com/divuzl"],
-        ["LinkedIn", "https://linkedin.com/company/divuzl"],
-        ["Twitter", "https://twitter.com/divuzl"],
-        ["YouTube", "https://youtube.com/@divuzl"],
-      ],
-      external: true,
-    },
+  const legal = [
+    ["Terms of Service", "/terms"],
+    ["Refund & Cancellation", "/refund-policy"],
+    ["Privacy Policy", "/privacy-policy"],
+    ["Cookie Policy", "/cookie-policy"],
   ];
 
   return (
-    <footer
-      ref={footerRef}
-      className="bg-white text-[#1e1e1e] font-montserrat py-20 border-t border-gray-200"
-    >
-      <div className="w-[70vw] max-w-7xl mx-auto flex flex-col gap-14">
-        {/* CTA */}
-        <div className="text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
-          <h2 className="text-2xl md:text-4xl font-semibold tracking-tight leading-tight">
-            You Heard <br/><span className="text-blue-600 text-3xl md:text-5xl ">ENOUGH?</span>
-          </h2>
-          <Link
-            to="/contact"
-            className="group inline-block px-6 py-2 bg-blue-600 text-white rounded-full text-base font-medium transition-all duration-300 hover:bg-black"
-          >
-            Consult Us{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1">
-              ↗
-            </span>
-          </Link>
-        </div>
+    <footer className="bg-[#111] text-white font-montserrat">
+      <div className="w-[75vw] max-w-7xl mx-auto py-16 flex flex-col gap-14">
 
-        {/* Subtext */}
-        <p className="text-gray-600 text-center md:text-left text-sm md:text-base leading-relaxed max-w-2xl">
-          Embracing creativity and pushing the boundaries of what’s possible.
-        </p>
+       {/* SOCIAL */}
+<div>
+  <p className="uppercase text-sm tracking-widest text-gray-300 mb-2">SOCIAL</p>
+  <h2 className="text-3xl font-medium mb-10">Follow us for the latest updates</h2>
+  
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
+    {socials.map((s, i) => (
+      <a
+        key={i}
+        href={s.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 hover:text-blue-400 transition-colors"
+      >
+        {/* Left: Icon */}
+        <span className="text-5xl flex-shrink-0">{s.icon}</span>
+
+        {/* Right: Name + Handle */}
+        <div className="flex flex-col leading-tight">
+          <span className="text-xs uppercase tracking-widest">{s.name}</span>
+          <span className="text-sm">{s.handle}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
 
         {/* Grid Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-10 gap-y-12 text-sm text-black">
-          {sections.map((section, i) => (
-            <div key={i} ref={(el) => (columnsRef.current[i] = el)}>
-              <h4 className="font-semibold mb-3 tracking-tight text-base">
-                {section.title}
-              </h4>
-              <ul className="space-y-2">
-                {section.links.map(([text, to], index) =>
-                  section.external ? (
-                    <li key={index}>
-                      <a
-                        href={to}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-blue-600 transition-colors duration-200"
-                      >
-                        {text}
-                      </a>
-                    </li>
-                  ) : (
-                    <li key={index}>
-                      <Link
-                        to={to}
-                        className="hover:text-blue-600 transition-colors duration-200"
-                      >
-                        {text}
-                      </Link>
-                    </li>
-                  )
-                )}
-              </ul>
-              {section.extra && section.extra}
-            </div>
-          ))}
-        </div>
+<div className="grid grid-cols-1 sm:grid-cols-4 gap-x-10 gap-y-12 text-sm">
 
-        {/* Bottom Text */}
-        <div className="text-center text-sm font-medium text-gray-600 pt-6 border-t border-gray-200">
-          <p>Smart Strategy. Bold Creativity. Real Results. That’s Divuzl.</p>
-          <p className="mt-1 text-gray-500">
-            © 2025 Divuzl. All rights reserved.
-          </p>
-        </div>
+  {/* Departments - Column 1 */}
+  <div>
+    <h4 className="font-semibold mb-3 tracking-tight text-base">DEPARTMENTS</h4>
+    <ul className="space-y-2">
+      {departments.slice(0, Math.ceil(departments.length / 2)).map((dept, index) => (
+        <li key={index}>{dept}</li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Departments - Column 2 */}
+  <div className="pt-7 sm:pt-0"> {/* Small offset so headings align nicely */}
+    <ul className="space-y-2">
+      {departments.slice(Math.ceil(departments.length / 2)).map((dept, index) => (
+        <li key={index}>{dept}</li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Let's Connect */}
+  <div>
+    <h4 className="font-semibold mb-3 tracking-tight text-base">LET’S CONNECT</h4>
+    <ul className="space-y-2">
+      <li>
+        <a href="mailto:contact@divuzl.com" className="hover:text-blue-400 transition-colors">
+          Email: contact@divuzl.com
+        </a>
+      </li>
+      <li>
+        <a href="tel:+919220660377" className="hover:text-blue-400 transition-colors">
+          Phone: +91 9220660377
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  {/* Legal */}
+  <div>
+    <h4 className="font-semibold mb-3 tracking-tight text-base">LEGAL</h4>
+    <ul className="space-y-2">
+      {legal.map(([text, to], index) => (
+        <li key={index}>
+          <Link to={to} className="hover:text-blue-400 transition-colors">
+            {text}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+</div>
+
       </div>
+
+      {/* Bottom Bar */}
+<div className="border-t border-gray-700 py-6 px-[4vw] flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6 text-sm text-gray-400">
+  
+  {/* Left: Logo */}
+  <div className="flex-shrink-0 flex items-center">
+    <h1 className="dm-sans-heading text-2xl">Divuzl</h1>
+  </div>
+
+ {/* Middle: Copyright & Policy Links */}
+<div className="flex flex-col items-start gap-2 text-left ">
+  <div className="whitespace-nowrap">©2025 Divuzl Digital Solutions Private Limited . All rights reserved.</div>
+  <div className="flex flex-wrap justify-start gap-x-4 gap-y-1">
+    <a href="#" className="hover:text-white">Privacy Notice</a>
+    <a href="#" className="hover:text-white">Cookie Policy</a>
+    <a href="#" className="hover:text-white">Accessibility Declaration</a>
+    <a href="#" className="hover:text-white">Disclaimer</a>
+    <a href="#" className="hover:text-white">Security Policy</a>
+    <a href="#" className="hover:text-white">California Notice at Collection</a>
+    <a href="#" className="hover:text-white">Customize Cookies</a>
+  </div>
+</div>
+
+
+  {/* Right: Social Icons */}
+  <div className="flex items-center gap-5 text-lg">
+    {socials.map((s, i) => (
+      <a
+        key={i}
+        href={s.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-white transition-colors"
+      >
+        {s.icon}
+      </a>
+    ))}
+  </div>
+</div>
+
     </footer>
   );
 };

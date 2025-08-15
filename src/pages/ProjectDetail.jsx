@@ -150,55 +150,59 @@ const stats = [
 
 
 
-      <div className="w-full flex justify-center">
-  <img
-    ref={imageRef}
-    src={project.image}
-    alt={project.title}
-    className=" object-cover h-[60vh] md:h-[70vh] w-[62vw]"
-  />
+      <div className="flex justify-center">
+ <img
+  ref={imageRef}
+  src={project.image}
+  alt={project.title}
+  className="object-cover w-[68vw] sm:h-[50vh] md:h-[60vh] max-[1000px]:h-[20vh] mb-5"
+/>
+
 </div>
 
 
       {/* Description */}
       <section className="px-[12.5vw] py-20">
-        <p className="text-[1.1rem] text-gray-700 leading-relaxed max-w-2xl">
+        <p className="text-[1.1rem] text-gray-700 leading-relaxed max-w-2xl w-[70vw] dm-sans-body">
           {project.description}
         </p>
       </section>
-
-      {/* Stats Section */}
-      <section className="w-[75vw] bg-white text-black px-[12.5vw] py-16" ref={sectionRef}>
-        {stats.map((stat, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col md:flex-row gap-10 items-start relative mb-20"
-          >
-           <div
-  ref={(el) => (statRefs.current[idx] = el)}
-  className="stat-number text-[4.5rem] font-semibold leading-[1.1]"
+{/* Stats Section */}
+<section
+  className="w-[100vw] px-[12.5vw] bg-white text-black px-0 py-16"
+  ref={sectionRef}
 >
-  0
-</div>
-<div className="text-lg font-light mt-2 label-text max-w-sm text-gray-600">
-  {stat.label}
-</div>
-<div className="text-sm text-gray-500 mt-1 max-w-md">
-  {stat.description}
-</div>
-<hr/>
+  {stats.map((stat, idx) => (
+    <div
+      key={idx}
+      className="flex flex-col md:flex-row gap-10 items-start relative mb-20"
+    >
+      <div
+        ref={(el) => (statRefs.current[idx] = el)}
+        className="stat-number text-[4.5rem] font-regular leading-[1.1]"
+      >
+        0
+      </div>
 
-            <div className="w-full md:w-[70%]"></div>
+      <div className="text-lg font-light mt-2 label-text text-gray-700">
+        {stat.label}
+      </div>
 
-            {idx < stats.length - 1 && (
-              <div
-                ref={(el) => (lineRefs.current[idx] = el)}
-                className="divider-line h-px bg-gray-300 w-full absolute -bottom-12 left-0"
-              ></div>
-            )}
-          </div>
-        ))}
-      </section>
+      <div className="text-lg text-gray-400 mt-1 max-w-md dm-sans-body">
+        {stat.description}
+      </div>
+      <hr className="text-black"/>
+
+      {idx < stats.length - 1 && (
+        <div
+          ref={(el) => (lineRefs.current[idx] = el)}
+          className="divider-line h-px bg-gray-300 w-full absolute -bottom-12 left-0"
+        ></div>
+      )}
+    </div>
+  ))}
+</section>
+
 
     {relatedProjects.length > 0 && (
   <section className="px-[12vw] py-24 bg-[#fcfcfc]">
@@ -224,9 +228,7 @@ const stats = [
       <h3 className="text-xl font-semibold tracking-tight text-neutral-900">
         {proj.title}
       </h3>
-      <p className="text-sm text-neutral-500 leading-snug line-clamp-2">
-        {proj.description}
-      </p>
+      
     </div>
     <div className="absolute -top-5 -left-5 w-5 h-5 bg-black group-hover:bg-neutral-800 transition-all duration-300 rounded-full" />
   </Link>
@@ -237,7 +239,7 @@ const stats = [
 )}
 
     </div>
-    <Footer/>
+    
     </>
   );
 };

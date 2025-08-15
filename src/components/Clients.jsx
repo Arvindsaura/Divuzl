@@ -146,11 +146,11 @@ const Clients = () => {
 
       {/* Heading */}
       <div ref={headingRef} className="relative z-10 text-left mb-4">
-        <h2 className="text-6xl sm:text-6xl font-bold text-gray-900 dm-sans-heading">Our Clients</h2>
+        <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dm-sans-heading">Our Clients</h2>
       </div>
 
       {/* Subheading */}
-      <p ref={subheadingRef} className="text-lg text-gray-600 mb-16">
+      <p ref={subheadingRef} className="text-lg text-gray-600 mb-16 dm-sans-body">
         Trusted by brands, agencies, and startups worldwide.
       </p>
 
@@ -161,7 +161,7 @@ const Clients = () => {
             <div
               key={i}
               ref={(el) => (logoRefs.current[i] = el)}
-              className="bg-white/40 backdrop-blur-lg border border-gray-200 rounded-2xl w-85 h-24 flex items-center justify-center transition-all hover:shadow-xl duration-300"
+              className="bg-white/40 backdrop-blur-lg border border-gray-200 rounded-2xl w-70 h-24 flex items-center justify-center transition-all hover:shadow-xl duration-300"
             >
               <img
                 src={client.logo}

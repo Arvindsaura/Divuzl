@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import blogs from "../data/blogs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother"; // GSAP Club Plugin
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import SplitType from "split-type";
 import BlogSection from "../components/BlogSection";
 
-// Register plugins once
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const BlogDetail = () => {
@@ -23,7 +22,6 @@ const BlogDetail = () => {
   const blog = blogs.find((b) => b.id === id);
 
   useEffect(() => {
-    // Initialize ScrollSmoother only once
     if (!ScrollSmoother.get()) {
       ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
@@ -112,44 +110,42 @@ const BlogDetail = () => {
   return (
     <div className="bg-white text-[#111] font-terrat">
       {/* Hero */}
-      <section className="h-[60vh] px-[12vw] flex items-center justify-center text-center">
-        <div>
-          <h1
-            ref={titleRef}
-            className="text-3xl md:text-5xl font-bold mb-4 leading-tight"
-          >
-            {blog.title}
-          </h1>
-          <p className="text-gray-500 text-base md:text-lg">Published on {blog.date}</p>
-        </div>
+      <section className="h-[50vh] sm:h-[40vh] px-[12vw] flex flex-col items-center justify-center text-center space-y-4">
+        <h1
+          ref={titleRef}
+          className="text-3xl md:text-5xl font-bold leading-tight"
+        >
+          {blog.title}
+        </h1>
+        <p className="text-gray-500 text-base md:text-lg">
+          Published on {blog.date}
+        </p>
+        <p className="text-black font-bold text-lg">
+          {blog.author || "Unknown Author"}
+        </p>
+      </section>
+
+      {/* Blog Image */}
+      <section className="w-[75vw] mx-auto">
+        <img
+          ref={imageRef}
+          src={blog.image}
+          alt={blog.title}
+          className="rounded-3xl shadow-xl object-cover w-full aspect-video"
+        />
       </section>
 
       {/* Blog Content */}
-      <section className="py-24 px-[12vw] flex flex-col gap-16">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 w-full">
-            <img
-              ref={imageRef}
-              src={blog.image}
-              alt={blog.title}
-              className="rounded-3xl shadow-xl object-cover w-full h-[300px] md:h-[500px]"
-            />
-          </div>
-          <div ref={contentRef} className="md:w-1/2 w-full space-y-6">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              {blog.description}
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-[#0047FF] rounded-full" />
-              <div>
-                <p className="text-[#111] font-bold text-lg">{blog.author}</p>
-                <p className="text-sm text-gray-500">Web Developer</p>
-              </div>
-            </div>
-          </div>
+      <section className="py-24 px-[12vw]">
+        <div
+          ref={contentRef}
+          className="w-full flex flex-col justify-center space-y-8"
+        >
+          <p className="text-lg text-gray-700">{blog.description}</p>
         </div>
 
-        <div className="whitespace-pre-line text-[#444] text-base leading-7">
+        {/* Full Content */}
+        <div className="mt-12 whitespace-pre-line text-[#444] text-base leading-7 dm-sans-body">
           {blog.content}
         </div>
       </section>
@@ -161,7 +157,7 @@ const BlogDetail = () => {
             ref={headingSplitRef}
             className="text-3xl md:text-4xl font-regular mb-6 leading-tight"
           >
-            Built Different,<br/>Designed for the Future.
+            Built Different,<br />Designed for the Future.
           </h2>
           <p
             ref={paragraphRef}
@@ -173,28 +169,24 @@ const BlogDetail = () => {
           </p>
         </div>
         <div className="md:w-1/2 w-full">
-<div className="rounded-3xl overflow-hidden w-[30vw] h-[30vh]">
-  <img
-    src="https://i.pinimg.com/1200x/71/dc/0f/71dc0f02ac6f9179fa3791ffd5ba2304.jpg"
-    className="w-full h-full object-cover"
-    alt="Preview"
-  />
-</div>
+          <div className="rounded-3xl overflow-hidden w-full aspect-video">
+            <img
+              src="https://i.pinimg.com/1200x/71/dc/0f/71dc0f02ac6f9179fa3791ffd5ba2304.jpg"
+              className="w-full h-full object-cover"
+              alt="Preview"
+            />
+          </div>
         </div>
       </section>
 
       {/* More Blogs */}
-      <section className="px-[12vw] py-20  rounded-t-[2rem]">
+      <section className="px-[12vw] py-20 rounded-t-[2rem]">
         <h2 className="text-3xl md:text-4xl font-regular mb-4">
-          Loved This? <br/>Here Are More Blogs You’ll Definitely Enjoy
+          Loved This? <br />Here Are More Blogs You’ll Definitely Enjoy
         </h2>
-        {/* Floating Background Light */}
-      <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full  blur-[100px] opacity-40 -z-10" />
-
-      <BlogSection />
+        <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full blur-[100px] opacity-40 -z-10" />
+        <BlogSection />
       </section>
-
-      
     </div>
   );
 };

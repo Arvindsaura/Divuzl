@@ -115,7 +115,7 @@ const Projects = () => {
 
   return (
     <div id="smooth-wrapper">
-      <div id="smooth-content" ref={scrollContentRef} className="text-black font-montserrat">
+      <div id="smooth-content" ref={scrollContentRef} className="text-black ">
 
         {/* Hero Section */}
 <div
@@ -181,7 +181,7 @@ const Projects = () => {
           </div>
 
          {/* Project Cards */}
-<div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8">
   {filteredProjects.map((proj, i) => (
     <Link to={`/projects/${proj.slug}`} key={proj.slug}>
       <div
@@ -201,25 +201,19 @@ const Projects = () => {
       </div>
     </Link>
   ))}
+  {/* Quote / Animated Block */}
+          <div
+            ref={modernBlockRef}
+            className="mt-20  rounded-xl text-white text-4xl dm-sans-body text-left tracking-wide"
+          >
+            We’d love to hear from you, so send us a note, and we’ll be in touch.
+          </div>
 </div>
 
 
-          {/* Quote / Animated Block */}
-          <div
-            ref={modernBlockRef}
-            className="mt-20 p-10 bg-[#111] rounded-xl text-white text-center text-3xl font-bold tracking-wide"
-          >
-            "Ideas that move." <br />— Experience the scroll.
-          </div>
+          
         </div>
 
-        {/* Footer / Call to Action */}
-        <div className="text-center py-12 px-4 sm:px-6 md:px-20 bg-white text-black">
-          <p className="text-sm sm:text-base">Hi, thanks for visiting Divuzl!</p>
-          <p className="text-sm sm:text-base">
-            We’d love to hear from you, so send us a note, and we’ll be in touch.
-          </p>
-        </div>
       </div>
     </div>
   );

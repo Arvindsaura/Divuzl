@@ -121,7 +121,7 @@ const BlogSection = () => {
                 <h3 className="font-semibold text-lg text-gray-900 mb-2 hover:text-blue-600 transition">
                   {blog.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{blog.description}</p>
+                <p className="text-gray-600 text-sm dm-sans-body">{blog.description}</p>
               </div>
             </div>
           ))}

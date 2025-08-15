@@ -60,7 +60,7 @@ Yet the journey is ongoing. The next frontier lies in making these AI benefits g
     slug: "ai-finance-automation",
     title: "AI & Finance: Automating the Future",
     description: "Explore how artificial intelligence is revolutionizing the financial sector.",
-     image: "/images/blog1 (2).jpg",
+    image: "/images/blog1 (2).jpg",
     author: "Arvind Kashyap",
     date: "July 12, 2025",
     readingTime: "4 min read",
