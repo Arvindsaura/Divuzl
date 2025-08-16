@@ -14,171 +14,206 @@ const Navbar = () => {
   const location = useLocation();
   const navRef = useRef(null);
   const logoRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   const scrollToAbout = () => {
     const section = document.getElementById("about");
-
     if (location.pathname === "/") {
-      if (section) {
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: { y: section, offsetY: 80 }, // adjust for fixed navbar height
-          ease: "power2.out"
-        });
-      }
+      if (section) gsap.to(window, { duration: 1, scrollTo: { y: section, offsetY: 80 }, ease: "power2.out" });
     } else {
       sessionStorage.setItem("scrollToAbout", "true");
       navigate("/");
     }
   };
 
-  const NavLink = ({ to, text, onClick }) => (
+  const NavLink = ({ to, text, onClick, isButton }) => (
     <button
       onClick={() => {
-        if (onClick) {
-          onClick();
-        } else {
-          if (location.pathname === to) {
-            // Already on the page — scroll to top
-            gsap.to(window, {
-              duration: 1,
-              scrollTo: { y: 0 },
-              ease: "power2.out"
-            });
-          } else {
-            navigate(to);
-          }
+        if (onClick) onClick();
+        else {
+          if (location.pathname === to) gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power2.out" });
+          else navigate(to);
         }
         setMenuOpen(false);
       }}
-      className="relative text-sm uppercase tracking-wide font-medium text-white hover:text-[#0047FF] transition-all duration-300"
+      className={isButton ? "nav-btn" : "nav-link"}
     >
-      <span className="hover-underline">{text}</span>
+      {text}
     </button>
   );
 
   useEffect(() => {
-    // Navbar entrance animation
-    gsap.fromTo(
-      navRef.current,
-      { y: -50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: navRef.current,
-          start: "top top",
-          toggleActions: "play none none none",
-        },
-      }
-    );
+    gsap.fromTo(navRef.current, { y: -50, opacity: 0 }, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: { trigger: navRef.current, start: "top top", toggleActions: "play none none none" }
+    });
 
-    // Logo parallax
     gsap.to(logoRef.current, {
       yPercent: -10,
       ease: "none",
-      scrollTrigger: {
-        trigger: navRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      },
+      scrollTrigger: { trigger: navRef.current, start: "top top", end: "bottom top", scrub: 1 }
     });
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuRef.current) {
+      if (menuOpen) {
+        gsap.fromTo(mobileMenuRef.current,
+          { height: 0, opacity: 0 },
+          { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" }
+        );
+      } else {
+        gsap.to(mobileMenuRef.current, { height: 0, opacity: 0, duration: 0.4, ease: "power2.in" });
+      }
+    }
+  }, [menuOpen]);
+
   return (
-    <nav
-      ref={navRef}
-      className="w-[100vw] py-5 bg-black text-white fixed top-0 left-0 z-30"
-    >
-      <div className="w-[92vw] mx-[4vw] flex justify-between items-center">
-        {/* Logo */}
-        <h1
-          ref={logoRef}
-          className="text-2xl font-bold tracking-wider dm-sans-heading"
-        >
-          Divuzl
-        </h1>
+    <>
+      <style>{`
+        .navbar {
+          width: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background-color: black;
+          color: white;
+          z-index: 50;
+          padding: 1rem 0;
+        }
+        .nav-container {
+          width: 92%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .logo {
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+        .nav-links {
+          display: flex;
+          gap: 1.5rem;
+          flex-wrap: nowrap; /* prevent wrapping */
+        }
+        .nav-link {
+          text-transform: uppercase;
+          font-weight: 500;
+          font-size: 0.875rem;
+          color: white;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+        .nav-link:hover { color: #0047FF; }
+        .user-links {
+          display: flex;
+          gap: 0.75rem;
+          align-items: center;
+        }
+        .nav-btn {
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 0.25rem 0.75rem;
+       
+          border: none;
+     
+          
+          cursor: pointer;
+        }
+        .nav-btn:hover { background-color: #f0f0f0; }
+        .user-name { font-size: 0.875rem; color: #ccc; }
+        .hamburger-btn { background: none; border: none; cursor: pointer; display: none; }
+        .hamburger-icon { width: 1.5rem; height: 1.5rem; color: white; }
+        .mobile-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem 3%;
+          background-color: black;
+          overflow: hidden;
+        }
+        @media screen and (max-width: 1000px) {
+          .desktop-nav { display: none; }
+          .hamburger-btn { display: block; }
+        }
+        @media screen and (min-width: 1001px) {
+          .mobile-nav { display: none !important; }
+        }
+      `}</style>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-5">
-          <ul className="flex gap-6">
-            <li><NavLink to="/" text="Home" /></li>
-            <li><NavLink text="About Us" onClick={scrollToAbout} /></li>
-            <li><NavLink to="/blogs" text="News" /></li>
-            <li><NavLink to="/contact" text="Contact" /></li>
-            <li><NavLink to="/services" text="Services" /></li>
-            <li><NavLink to="/projects" text="Projects" /></li>
-            <li><NavLink to="/team" text="Team" /></li>
-          </ul>
+      <nav ref={navRef} className="navbar">
+        <div className="nav-container">
+          <h1 ref={logoRef} className="logo dm-sans-heading">Divuzl</h1>
 
-          <div className="flex items-center gap-4 ml-6">
-            {isSignedIn ? (
-              <>
-                <UserButton afterSignOutUrl="/" />
-                <span className="text-sm text-gray-500 font-medium">
-                  {user.fullName || user.username || user.emailAddresses[0]?.emailAddress}
-                </span>
-              </>
-            ) : (
-              <>
-                <NavLink to="/signup" text="Sign Up" />
-                <NavLink to="/login" text="Login" />
-              </>
-            )}
+          {/* Desktop Nav */}
+          <div className="desktop-nav">
+            <ul className="nav-links">
+              <li><NavLink to="/" text="Home" /></li>
+              <li><NavLink text="About Us" onClick={scrollToAbout} /></li>
+              <li><NavLink to="/blogs" text="News" /></li>
+              <li><NavLink to="/contact" text="Contact" /></li>
+              <li><NavLink to="/services" text="Services" /></li>
+              <li><NavLink to="/projects" text="Projects" /></li>
+              <li><NavLink to="/team" text="Team" /></li>
+              <li>
+                <div className="user-links">
+              {isSignedIn ? (
+                <>
+                  <UserButton afterSignOutUrl="/" />
+                  <span className="user-name">{user.fullName || user.username || user.emailAddresses[0]?.emailAddress}</span>
+                </>
+              ) : (
+                <>
+                  <NavLink to="/signup" text="SIGN UP" isButton />
+                  <NavLink to="/login" text="LOGIN" isButton />
+                </>
+              )}
+            </div>
+              </li>
+            </ul>
+            
           </div>
+
+          {/* Mobile Hamburger */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-btn" aria-label="Toggle Menu">
+            <svg className="hamburger-icon" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden focus:outline-none"
-          aria-label="Toggle Menu"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="md:hidden mt-4 px-[3vw] space-y-4 pb-4">
-          <NavLink to="/" text="Home" />
-          <NavLink text="About Us" onClick={() => { scrollToAbout(); setMenuOpen(false); }} />
-          <NavLink to="/blogs" text="News" />
-          <NavLink to="/contact" text="Contact" />
-          <NavLink to="/services" text="Services" />
-          <NavLink to="/projects" text="Projects" />
-          <NavLink to="/team" text="Team" />
-          {isSignedIn ? (
-            <div className="flex items-center gap-3">
-              <UserButton afterSignOutUrl="/" />
-              <span className="text-sm text-gray-500">
-                {user.fullName || user.username || user.emailAddresses[0]?.emailAddress}
-              </span>
-            </div>
-          ) : (
+        {/* Mobile Dropdown */}
+        <div ref={mobileMenuRef} className="mobile-nav">
+          {menuOpen && (
             <>
-              <NavLink to="/signup" text="Sign Up" />
-              <NavLink to="/login" text="Login" />
+              <NavLink to="/" text="Home" />
+              <NavLink text="About Us" onClick={scrollToAbout} />
+              <NavLink to="/blogs" text="News" />
+              <NavLink to="/contact" text="Contact" />
+              <NavLink to="/services" text="Services" />
+              <NavLink to="/projects" text="Projects" />
+              <NavLink to="/team" text="Team" />
+              {isSignedIn ? (
+                <div className="user-links">
+                  <UserButton afterSignOutUrl="/" />
+                  <span className="user-name">{user.fullName || user.username || user.emailAddresses[0]?.emailAddress}</span>
+                </div>
+              ) : (
+                <>
+                  <NavLink to="/signup" text="Sign Up" isButton />
+                  <NavLink to="/login" text="Login" isButton />
+                </>
+              )}
             </>
           )}
         </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 };
 
