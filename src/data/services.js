@@ -1,125 +1,358 @@
-const services = [
+export const services = [
   {
     id: 1,
-    title: "Business Incorporation & Legal",
-    slug: "business-incorporation-legal",
-     image: "/images/service1.jpg",
-    description: "Start your business strong with everything from company registration, PAN, TAN, GST setup",
-    content: "We guide you through the complete lifecycle of starting a business — from selecting the right company structure (Private Limited, LLP, Sole Proprietorship, etc.), obtaining all necessary approvals (like DIN, PAN, TAN), to helping with post-incorporation compliance. Our legal experts stay updated with the latest statutory requirements to make sure your business remains protected and audit-ready. We also provide ongoing support for amendments, shareholding changes, and closure procedures if needed. We act as your compliance partner, tracking filing due dates, preparing resolutions, and ensuring your company stays penalty-free. We also facilitate ROC filings, GST returns, and ensure that your trademark/IPs are filed and protected properly.",
-    whatWeDeliver: "Tailored legal support — from incorporation to compliance — ensuring your foundation is rock solid. Services include digital signature application, drafting MOA/AOA, GST registration, PAN/TAN acquisition, startup India registration, trademark filing, annual compliance filing, advisory on business licenses, and access to legal templates for contracts, NDAs, and agreements.",
-    whyItMatters: "Proper incorporation and legal clarity are crucial for growth, investment, and protection. Starting off correctly can prevent complex legal challenges, ensure easier access to funding, and set the tone for professional credibility. Investors, banks, and future partners will evaluate your structure and compliance rigor before engaging — we make sure you’re investor-ready from day one."
+    title: "Business Incorporation & Legal Services",
+    slug: "business-incorporation-legal-services",
+    image: "/images/service1.jpg",
+    description: "Starting and running a business requires a strong legal foundation. At Divuzl, we simplify the process by providing end-to-end incorporation, registration, and compliance services. From registering your business under the right structure to obtaining necessary licenses, tax registrations, and legal documents, we ensure entrepreneurs and businesses remain compliant while focusing on growth.",
+    whatWeOffer: [
+      "Company Registration: Pvt Ltd, LLP, OPC, Partnership, Sole Proprietorship",
+      "Startup India Registration (DPIIT recognition, tax exemptions)",
+      "MSME Registration (Udyam Aadhaar)",
+      "PAN, TAN, GST, and Professional Tax registrations",
+      "Trademark, Copyright, and Patent filing assistance",
+      "Shop & Establishment License, FSSAI, IEC, and other permits",
+      "ROC filings, annual returns, GST filings, and tax audits",
+      "Drafting of founder agreements, employment contracts, and vendor agreements"
+    ]
   },
   {
     id: 2,
-    title: "Branding & Identity Design",
-    slug: "branding-identity-design",
-      image: "/images/service2.jpg",
-    description: "Build a memorable brand identity with logo systems, visual styles, brand story development, color psychology, packaging mockups, and full brand kits. ",
-    content: "Branding goes beyond visuals — it’s the strategic essence of how your business communicates. We begin by understanding your vision, values, and audience, then convert it into a cohesive identity that connects emotionally and visually. This includes logo ideation, scalable brand assets, mockups for real-life applications, and guidance on brand tone, messaging, and storytelling. We also provide competitive benchmarking, color psychology decisions, and design style exploration. Each deliverable is optimized for both digital and print use to ensure universal brand consistency. Your branding assets will seamlessly work across social media, merchandise, pitch decks, and signage.",
-    whatWeDeliver: "Logo systems, typography, color palettes, brand kits, packaging templates, mockups, social media kits, brand story decks, email signature design, business cards, icons, usage guidelines, Canva templates, and brand voice toneboards.",
-    whyItMatters: "Your brand is the first and lasting impression. A consistent identity builds trust, increases recall, and influences how seriously customers and investors take you. It helps create emotional resonance and positions you uniquely in a crowded market. A strong brand becomes a growth asset — increasing valuation, reducing CAC, and improving marketing conversion rates."
+    title: "Branding & Design",
+    slug: "branding-design",
+    image: "/images/service2.jpg",
+    description: "Your brand is more than just a logo—it’s your identity. We craft unique, memorable, and scalable brand strategies and visual designs that reflect your values and vision. Our goal is to ensure your business leaves a lasting impression across all customer touchpoints.",
+    whatWeOffer: [
+      "Brand identity creation (name, logo, colors, typography)",
+      "Brand guidelines & positioning strategy",
+      "Marketing collateral (business cards, brochures, flyers, pitch decks)",
+      "Packaging design for products",
+      "Corporate branding for offices, events, and merchandise",
+      "Rebranding services for evolving businesses"
+    ]
   },
   {
     id: 3,
-    title: "Website Design & Development",
-    slug: "website-design-development",
-  image: "/images/service3.jpg",
-    description: "We craft visually stunning, technically robust websites tailored for performance, storytelling, and lead conversion. ",
-    content: "From low-fidelity wireframes to high-performance code, we deliver end-to-end web experiences that align with your business goals. Whether you need a marketing site, portfolio, or a custom web application, we follow a strategy-first approach with UX research, conversion optimization, and technical performance at its core. Our stack includes HTML5, CSS3, JS frameworks, Next.js, headless CMS like Sanity/Contentful, and more. We handle SEO, analytics, hosting, security, and even blog/article writing support if needed.",
-    whatWeDeliver: "Fully responsive UI/UX design, static or dynamic website builds, CMS integration (WordPress, Strapi, Sanity), interactive animations, product showcases, e-commerce modules, blog engines, lead generation forms, Google Analytics, SEO metadata, fast loading scores, and custom domain deployment.",
-    whyItMatters: "A good website acts as your digital headquarters. It’s where first impressions are made and conversions happen. A slow or cluttered website loses customers instantly — we build sites that are both beautiful and blazing fast. A well-designed site reduces bounce rate, builds trust, increases sales, and becomes a lead funnel you own — unlike third-party platforms."
+    title: "Web & App Development",
+    slug: "web-app-development",
+    image: "/images/service3.jpg",
+    description: "We create world-class, user-friendly, and high-performing websites and mobile apps tailored to your business needs. From corporate websites to complex e-commerce platforms and mobile apps, we ensure performance, security, and scalability.",
+    whatWeOffer: [
+      "Responsive website development (corporate, portfolio, e-commerce)",
+      "Mobile app development (iOS, Android, cross-platform)",
+      "Custom software solutions & dashboards",
+      "Landing pages for campaigns and lead generation",
+      "CMS solutions (WordPress, Shopify, Magento, etc.)",
+      "API integration and automation",
+      "Website maintenance & performance optimization"
+    ]
   },
   {
     id: 4,
-    title: "Pitch Decks & Fundraising Collateral",
-    slug: "pitch-decks-fundraising",
-      image: "/images/service4.jpg",
-    description: "Investor-ready collateral crafted to raise capital — pitch decks, TAM analysis, traction storytelling, business models and pitch coaching.",
-    content: "We create pitch materials that speak to investors — clearly, concisely, and convincingly. Our decks are not just design-heavy but story-driven. We help founders articulate their vision, traction, market insights, business model, and roadmap in a format investors expect. This includes TAM/SAM/SOM visuals, competitive positioning, risk mitigation plans, and investor FAQs. We tailor materials for angel rounds, seed, pre-series A, and more. We can also assist in preparing datarooms, cap tables, and supporting metrics for investor follow-up.",
-    whatWeDeliver: "10–15 slide investor pitch decks (Figma & PDF), teaser one-pagers, fundraising narrative consulting, custom charts/infographics, revenue projection spreadsheets, pitch training/coaching sessions, and versioned decks for different investor types.",
-    whyItMatters: "In a sea of decks, clarity is king. A pitch that communicates effectively can open funding doors faster. You get one shot — make it count. The right deck can create FOMO, establish credibility, and secure that crucial meeting that changes everything."
+    title: "Social Media Marketing",
+    slug: "social-media-marketing",
+    image: "/images/service4.jpg",
+    description: "Social media is where audiences connect and brands thrive. We manage your brand’s presence on all platforms, ensuring consistent, engaging, and ROI-driven strategies. From content creation to performance analysis, we help you stand out.",
+    whatWeOffer: [
+      "Social media strategy & calendar planning",
+      "Content creation (posts, reels, shorts, stories, carousels)",
+      "Profile optimization and branding",
+      "Paid ad campaigns across Facebook, Instagram, LinkedIn, Twitter",
+      "Influencer marketing collaborations",
+      "Community management & engagement",
+      "Social media analytics & reporting"
+    ]
   },
   {
     id: 5,
-    title: "Social Media Management & Growth",
-    slug: "social-media-management-growth",
-      image: "/images/service5.jpg",
-    description: "We help you dominate your niche online — with content that engages, formats that work on each platform, and consistent posting strategies powered by analytics.",
-    content: "We offer a full-cycle social media service — planning, creating, scheduling, analyzing, and growing. Our content calendar system ensures consistency, while designers and copywriters collaborate to create posts that resonate. We focus on both organic and paid strategies tailored for LinkedIn, Instagram, Twitter, and more. Engagement, not just vanity metrics, is our focus. We A/B test formats, analyze competitor content, track reach & save rates, and improve CTA hooks continuously.",
-    whatWeDeliver: "30-day content calendars, graphic carousels, reels editing, story templates, platform-specific strategy, influencer collaborations, ad creative, caption writing, analytics dashboards, and monthly growth reporting.",
-    whyItMatters: "Brands that stay visible stay relevant. Social media is not just for visibility but for building community, trust, and inbound sales. Being top-of-mind drives repeat engagement and builds social proof — today’s attention is tomorrow’s customer."
+    title: "Lead Generation & Sales Systems",
+    slug: "lead-generation-sales-systems",
+    image: "/images/service5.jpg",
+    description: "Revenue is the backbone of every business. At Divuzl, we design lead generation campaigns and build sales funnels that bring you qualified leads and convert them into paying customers.",
+    whatWeOffer: [
+      "Targeted ad campaigns (Google, Meta, LinkedIn, YouTube)",
+      "Lead magnets (landing pages, email captures, offers)",
+      "CRM setup and automation",
+      "B2B & B2C lead generation strategies",
+      "Conversion rate optimization",
+      "Email & WhatsApp drip campaigns",
+      "Sales funnel design & automation"
+    ]
   },
   {
     id: 6,
-    title: "Product UI/UX Strategy & Design",
-    slug: "product-uiux-design",
-    image: "/images/service6.jpg",
-    description: "Create intuitive, modern, and scalable digital product experiences — with research-backed UX, high-conversion interfaces, and pixel-perfect design systems.",
-     whatWeDeliver: "30-day content calendars, graphic carousels, reels editing, story templates, platform-specific strategy, influencer collaborations, ad creative, caption writing, analytics dashboards, and monthly growth reporting.",
-    whyItMatters: "Brands that stay visible stay relevant. Social media is not just for visibility but for building community, trust, and inbound sales. Being top-of-mind drives repeat engagement and builds social proof — today’s attention is tomorrow’s customer."
-    // [Content will continue for other services in next update]
-  }
-  ,
+    title: "Performance Marketing",
+    slug: "performance-marketing",
+ image: "/images/service6.jpg",
+    description: "Performance marketing is about results—every penny invested is tracked and optimized. We craft high-performing ad campaigns that ensure maximum ROI with real-time data tracking.",
+    whatWeOffer: [
+      "Google Ads (Search, Display, Shopping, YouTube)",
+      "Meta Ads (Facebook & Instagram)",
+      "LinkedIn & Twitter paid campaigns",
+      "Affiliate marketing programs",
+      "Retargeting & remarketing campaigns",
+      "Conversion tracking & attribution",
+      "Detailed ROI reports & analytics"
+    ]
+  },
   {
     id: 7,
-    title: "Business Incorporation & Legal",
-    slug: "business-incorporation-legal",
-      image: "/images/service7.jpg",
-    description: "Start your business strong with everything from company registration, PAN, TAN, GST setup, trademark filings, to legal documentation for founders.",
-    content: "We guide you through the complete lifecycle of starting a business — from selecting the right company structure (Private Limited, LLP, Sole Proprietorship, etc.), obtaining all necessary approvals (like DIN, PAN, TAN), to helping with post-incorporation compliance. Our legal experts stay updated with the latest statutory requirements to make sure your business remains protected and audit-ready. We also provide ongoing support for amendments, shareholding changes, and closure procedures if needed. We act as your compliance partner, tracking filing due dates, preparing resolutions, and ensuring your company stays penalty-free. We also facilitate ROC filings, GST returns, and ensure that your trademark/IPs are filed and protected properly.",
-    whatWeDeliver: "Tailored legal support — from incorporation to compliance — ensuring your foundation is rock solid. Services include digital signature application, drafting MOA/AOA, GST registration, PAN/TAN acquisition, startup India registration, trademark filing, annual compliance filing, advisory on business licenses, and access to legal templates for contracts, NDAs, and agreements.",
-    whyItMatters: "Proper incorporation and legal clarity are crucial for growth, investment, and protection. Starting off correctly can prevent complex legal challenges, ensure easier access to funding, and set the tone for professional credibility. Investors, banks, and future partners will evaluate your structure and compliance rigor before engaging — we make sure you’re investor-ready from day one."
+    title: "SEO & Content Marketing",
+    slug: "seo-content-marketing",
+ image: "/images/service7.jpg",
+    description: "Visibility is everything. With powerful SEO and content strategies, we help your business rank higher, attract traffic, and build authority in your industry.",
+    whatWeOffer: [
+      "SEO audits & competitor analysis",
+      "On-page SEO (meta tags, speed, keyword optimization)",
+      "Off-page SEO (backlinks, outreach, PR mentions)",
+      "Local SEO (Google Business Profile, maps ranking)",
+      "Blog writing & long-form content",
+      "Case studies, whitepapers, and thought-leadership articles",
+      "Video SEO & YouTube optimization"
+    ]
   },
   {
     id: 8,
-    title: "Branding & Identity Design",
-    slug: "branding-identity-design",
-     image: "/images/service8.jpg",
-    description: "Build a memorable brand identity with logo systems, visual styles, brand story development, color psychology, packaging mockups, and full brand kits. Perfect for new businesses or rebranding established ones.",
-    content: "Branding goes beyond visuals — it’s the strategic essence of how your business communicates. We begin by understanding your vision, values, and audience, then convert it into a cohesive identity that connects emotionally and visually. This includes logo ideation, scalable brand assets, mockups for real-life applications, and guidance on brand tone, messaging, and storytelling. We also provide competitive benchmarking, color psychology decisions, and design style exploration. Each deliverable is optimized for both digital and print use to ensure universal brand consistency. Your branding assets will seamlessly work across social media, merchandise, pitch decks, and signage.",
-    whatWeDeliver: "Logo systems, typography, color palettes, brand kits, packaging templates, mockups, social media kits, brand story decks, email signature design, business cards, icons, usage guidelines, Canva templates, and brand voice toneboards.",
-    whyItMatters: "Your brand is the first and lasting impression. A consistent identity builds trust, increases recall, and influences how seriously customers and investors take you. It helps create emotional resonance and positions you uniquely in a crowded market. A strong brand becomes a growth asset — increasing valuation, reducing CAC, and improving marketing conversion rates."
+    title: "Video & Photo Production",
+    slug: "video-photo-production",
+ image: "/images/service8.jpg",
+    description: "Visuals drive emotions and decisions. We create high-quality video and photography content that showcases your brand in the most compelling way.",
+    whatWeOffer: [
+      "Brand commercials & ad films",
+      "Product photography & catalog shoots",
+      "Corporate films & documentaries",
+      "Event coverage (launches, conferences, exhibitions)",
+      "Explainer videos & animated graphics",
+      "Short-form video content (Reels, TikToks, Shorts)",
+      "Drone videography & creative shoots"
+    ]
   },
   {
     id: 9,
-    title: "Website Design & Development",
-    slug: "website-design-development",
-     image: "/images/service9.jpg",
-    description: "We craft visually stunning, technically robust websites tailored for performance, storytelling, and lead conversion. Whether portfolio, e-commerce, SaaS, or blogs — we have a custom approach for each.",
-    content: "From low-fidelity wireframes to high-performance code, we deliver end-to-end web experiences that align with your business goals. Whether you need a marketing site, portfolio, or a custom web application, we follow a strategy-first approach with UX research, conversion optimization, and technical performance at its core. Our stack includes HTML5, CSS3, JS frameworks, Next.js, headless CMS like Sanity/Contentful, and more. We handle SEO, analytics, hosting, security, and even blog/article writing support if needed.",
-    whatWeDeliver: "Fully responsive UI/UX design, static or dynamic website builds, CMS integration (WordPress, Strapi, Sanity), interactive animations, product showcases, e-commerce modules, blog engines, lead generation forms, Google Analytics, SEO metadata, fast loading scores, and custom domain deployment.",
-    whyItMatters: "A good website acts as your digital headquarters. It’s where first impressions are made and conversions happen. A slow or cluttered website loses customers instantly — we build sites that are both beautiful and blazing fast. A well-designed site reduces bounce rate, builds trust, increases sales, and becomes a lead funnel you own — unlike third-party platforms."
+    title: "Events & Exhibitions",
+    slug: "events-exhibitions",
+  image: "/images/service9.jpg",
+    description: "From concept to execution, we organize impactful events that help your brand connect with the right audience, create experiences, and boost visibility.",
+    whatWeOffer: [
+      "Corporate events & product launches",
+      "Exhibitions & trade show management",
+      "Conferences, seminars & workshops",
+      "Brand activation & roadshows",
+      "Event promotions & coverage",
+      "Sponsorship management & partnerships"
+    ]
   },
   {
     id: 10,
-    title: "Pitch Decks & Fundraising Collateral",
-    slug: "pitch-decks-fundraising",
-     image: "/images/service10.jpg",
-    description: "Investor-ready collateral crafted to raise capital — pitch decks, TAM analysis, traction storytelling, business models, risk analysis, financial projections, and pitch coaching.",
-    content: "We create pitch materials that speak to investors — clearly, concisely, and convincingly. Our decks are not just design-heavy but story-driven. We help founders articulate their vision, traction, market insights, business model, and roadmap in a format investors expect. This includes TAM/SAM/SOM visuals, competitive positioning, risk mitigation plans, and investor FAQs. We tailor materials for angel rounds, seed, pre-series A, and more. We can also assist in preparing datarooms, cap tables, and supporting metrics for investor follow-up.",
-    whatWeDeliver: "10–15 slide investor pitch decks (Figma & PDF), teaser one-pagers, fundraising narrative consulting, custom charts/infographics, revenue projection spreadsheets, pitch training/coaching sessions, and versioned decks for different investor types.",
-    whyItMatters: "In a sea of decks, clarity is king. A pitch that communicates effectively can open funding doors faster. You get one shot — make it count. The right deck can create FOMO, establish credibility, and secure that crucial meeting that changes everything."
+    title: "PR & Media Outreach",
+    slug: "pr-media-outreach",
+ image: "/images/service10.jpg",
+    description: "A strong public image builds credibility. Our PR team ensures your brand gets featured in the right media, maintains a positive image, and builds industry authority.",
+    whatWeOffer: [
+      "Press release drafting & distribution",
+      "Media coverage in digital, print & TV",
+      "Crisis communication management",
+      "Influencer & thought-leader collaborations",
+      "Interview arrangements & guest articles",
+      "Reputation monitoring & brand positioning",
+      "Media partnerships & event coverage"
+    ]
   },
   {
-    id:11,
-    title: "Social Media Management & Growth",
-    slug: "social-media-management-growth",
-     image: "/images/service11.jpg",
-    description: "We help you dominate your niche online — with content that engages, formats that work on each platform, and consistent posting strategies powered by analytics.",
-    content: "We offer a full-cycle social media service — planning, creating, scheduling, analyzing, and growing. Our content calendar system ensures consistency, while designers and copywriters collaborate to create posts that resonate. We focus on both organic and paid strategies tailored for LinkedIn, Instagram, Twitter, and more. Engagement, not just vanity metrics, is our focus. We A/B test formats, analyze competitor content, track reach & save rates, and improve CTA hooks continuously.",
-    whatWeDeliver: "30-day content calendars, graphic carousels, reels editing, story templates, platform-specific strategy, influencer collaborations, ad creative, caption writing, analytics dashboards, and monthly growth reporting.",
-    whyItMatters: "Brands that stay visible stay relevant. Social media is not just for visibility but for building community, trust, and inbound sales. Being top-of-mind drives repeat engagement and builds social proof — today’s attention is tomorrow’s customer."
+    id: 11,
+    title: "Financial, CA, CS & Compliance",
+    slug: "financial-ca-cs-compliance",
+  image: "/images/service11.jpg",
+    description: "Finance and compliance are crucial to long-term business growth. We offer expert advisory and execution services to ensure your financial and legal obligations are always in order.",
+    whatWeOffer: [
+      "Accounting & bookkeeping services",
+      "GST, TDS, and tax filing",
+      "Company secretarial compliance",
+      "ROC compliance & board resolutions",
+      "Financial projections & business valuations",
+      "Payroll management & employee compliance",
+      "Audit & assurance services"
+    ]
   },
   {
     id: 12,
-    title: "Product UI/UX Strategy & Design",
-    slug: "product-uiux-design",
-     image: "/images/service12.jpg",
-    description: "Create intuitive, modern, and scalable digital product experiences — with research-backed UX, high-conversion interfaces, and pixel-perfect design systems.",
-     whatWeDeliver: "30-day content calendars, graphic carousels, reels editing, story templates, platform-specific strategy, influencer collaborations, ad creative, caption writing, analytics dashboards, and monthly growth reporting.",
-    whyItMatters: "Brands that stay visible stay relevant. Social media is not just for visibility but for building community, trust, and inbound sales. Being top-of-mind drives repeat engagement and builds social proof — today’s attention is tomorrow’s customer."
-    // [Content will continue for other services in next update]
-  }
-];
+    title: "Startup Advisory & Funding Support",
+    slug: "startup-advisory-funding-support",
+  image: "/images/service12.jpg",
+    description: "We empower startups to grow by providing end-to-end guidance, from business planning to raising capital. Divuzl connects you with investors, incubators, and accelerators to scale your venture.",
+    whatWeOffer: [
+      "Business plan & pitch deck preparation",
+      "Market research & competitor analysis",
+      "Fundraising strategy & investor connections",
+      "Financial modeling & valuation reports",
+      "Government schemes & grant application support",
+      "Incubation & accelerator partnership guidance",
+      "Growth strategy consulting"
+    ]
+  },
+  {
+    id: 13,
+    title: "Market Intelligence & Analytics",
+    slug: "market-intelligence-analytics",
+ image: "/images/service13.jpg",
+    description: "We empower businesses with in-depth market research and actionable insights that drive smarter decisions. By studying consumer behavior, competitor strategies, and market shifts, we help you anticipate trends and make informed moves that keep you ahead of the competition. Our team translates raw data into meaningful strategies, ensuring every decision is backed by evidence, not guesswork.",
+    whatWeOffer: [
+      "Competitor analysis & benchmarking reports",
+      "Consumer behavior research & trend mapping",
+      "Comprehensive market research documentation",
+      "Industry opportunity reports & whitepapers",
+      "Detailed insights dashboards for decision-making"
+    ],
+    process: [
+      "Data Collection","Analysis & Insights","Reporting","Strategy Roadmap"
+    ]
+  },
+  {
+    id: 14,
+    title: "Investor Relations & Fundraising",
+    slug: "investor-relations-fundraising",
+ image: "/images/service14.jpg",
+    description: "We position your business to attract the right investors and funding opportunities. From crafting compelling pitch decks to conducting valuation reports, we ensure you are investment-ready. Our strong investor network provides opportunities for meaningful connections, while our structured approach maximizes your chances of securing funding.",
+    whatWeOffer: [
+      "Investor-ready pitch decks and presentations",
+      "Business valuation reports",
+      "Investor introductions & networking opportunities",
+      "Funding strategy & roadmap design",
+      "Support during due diligence and negotiations"
+    ],
+    process: [
+      "Documentation","Investor Outreach","Meetings & Negotiation ","Follow-up & Closing"
+    ]
+  },
+  {
+    id: 15,
+    title: "E-commerce Growth Solutions",
+    slug: "ecommerce-growth-solutions",
+   image: "/images/service15.jpg",
+    description: "We transform online stores into high-performing revenue engines. From optimized product listings and store setups to advanced paid ad campaigns, our strategies are designed to increase conversions, reduce cart abandonment, and maximize ROI. We also track growth metrics to continuously refine your online performance.",
+    whatWeOffer: [
+      "E-commerce store setup & optimization (Shopify, WooCommerce, etc.)",
+      "Product listing SEO & keyword optimization",
+      "Paid ad campaigns (Google, Meta, Amazon)",
+      "Conversion rate optimization (CRO) strategies",
+      "Analytics & growth tracking dashboards"
+    ],
+    process: [
+      "Store Setup","Optimization","Paid Campaigns","Growth Monitoring"
+    ]
+  },
+  {
+    id: 16,
+    title: "Automation & Technology Integration",
+    slug: "automation-technology-integration",
+    image: "/images/service16.jpg",
+    description: "We bring efficiency to your business by integrating automation and advanced technologies. By streamlining repetitive processes with CRM systems, chatbots, and workflow automations, we save you time, reduce errors, and enhance productivity. We ensure seamless integration across your existing business ecosystem.",
+    whatWeOffer: [
+      "CRM automation & sales funnel optimization",
+      "Chatbot setup for customer support & engagement",
+      "Workflow automation across departments",
+      "Integration of APIs & third-party tools",
+      "Employee training for smooth adoption"
+    ],
+    process: [
+      "Process Mapping","Tool Setup","Team Training","Optimization & Scaling"
+    ]
+  },
+  {
+    id: 17,
+    title: "Community Building & Loyalty Programs",
+    slug: "community-building-loyalty-programs",
+ image: "/images/service17.jpg",
+    description: "We transform your customers into loyal advocates by fostering meaningful relationships and communities around your brand. Through loyalty programs, referral systems, and online engagement platforms, we help you build lasting trust and turn one-time buyers into lifelong supporters.",
+    whatWeOffer: [
+      "Loyalty & rewards program design",
+      "Online community setup (social media, private forums, apps)",
+      "Customer referral systems",
+      "Membership & subscription models",
+      "Engagement campaigns to retain customers"
+    ],
+    process: [
+      "Planning","Setup","Launch","Engagement & Continuous Growth"
+    ]
+  },
+  {
+    id: 18,
+    title: "Customer Experience (CX) & Retention",
+    slug: "customer-experience-retention",
+ image: "/images/service18.jpg",
+    description: "We enhance every touchpoint of your customer journey to ensure satisfaction and retention. By collecting feedback, analyzing customer journeys, and running personalized retention campaigns, we help businesses improve loyalty and lifetime value. A strong CX strategy translates into reduced churn and consistent growth.",
+    whatWeOffer: [
+      "Customer journey mapping & analysis",
+      "Feedback collection systems (NPS, surveys, reviews)",
+      "Personalized retention campaigns",
+      "Loyalty management solutions",
+      "Customer support process optimization"
+    ],
+    process: [
+      "Journey Mapping","Feedback Collection","Action Implementation","Follow-up & Retention Tracking"
+    ]
+  },
+  {
+    id: 19,
+    title: "Offline Marketing & Print Solutions",
+    slug: "offline-marketing-print-solutions",
+    image: "/images/service19.jpg",
+    description: "We extend your marketing presence beyond digital by creating high-quality physical branding materials and offline campaigns. From brochures to billboard designs, packaging to print advertising, we ensure your brand stands out in every offline interaction. Our creative print solutions reinforce your identity and expand visibility.",
+    whatWeOffer: [
+      "Print collateral design (brochures, flyers, catalogues)",
+      "Billboard & outdoor advertising",
+      "Packaging design & product branding",
+      "Trade show & exhibition branding",
+      "Print advertising campaigns"
+    ],
+    process: [
+      "Creative Design","Production","Placement/Distribution","Review & Optimization"
+    ]
+  },
+  {
+    id: 20,
+    title: "HR & Recruitment Branding",
+    slug: "hr-recruitment-branding",
+ image: "/images/service20.jpg",
+    description: "We strengthen your employer brand to attract and retain top-tier talent. From recruitment marketing to onboarding support, we position your company as an aspirational workplace. With culture-driven branding, recruitment campaigns, and employee experience solutions, we ensure your organization stands out in the job market.",
+    whatWeOffer: [
+      "Recruitment marketing campaigns",
+      "Employer branding strategy & positioning",
+      "Onboarding kits & training materials",
+      "Culture videos & employee branding content",
+      "Internal communication strategies"
+    ],
+    process: [
+      "Branding Strategy","Recruitment Campaign","Candidate Outreach","Onboarding & Retention"
+    ]
+  },
+  {
+    id: 21,
+    title: "Crisis Management & Risk Advisory",
+    slug: "crisis-management-risk-advisory",
+  image: "/images/service21.jpg",
+    description: "We safeguard your business during challenging times, whether it’s PR, legal, or operational risks. Our proactive risk assessments, real-time crisis response strategies, and recovery frameworks ensure your brand maintains stability and credibility even during uncertain situations.",
+    whatWeOffer: [
+      "Crisis communication & contingency plans",
+      "Real-time crisis response management",
+      "Risk assessment reports (financial, legal, operational)",
+      "Media management during crisis",
+      "Business continuity & recovery planning"
+    ],
+    process: [
+      "Risk Assessment","Action Plan Development","Crisis Response Execution","Recovery & Monitoring"
+    ]
+  },
+  {
+    id: 22,
+    title: "Strategic Partnerships & Alliances",
+    slug: "strategic-partnerships-alliances",
+ image: "/images/service22.jpg",
+    description: "We unlock growth opportunities by connecting your business with the right partners, collaborators, and stakeholders. From industry tie-ups to brand alliances, we help you leverage partnerships that drive revenue, expand your reach, and strengthen your market position.",
+    whatWeOffer:["Strategic industry partnerships", "Brand collaborations & co-marketing initiatives ","Joint venture facilitation","Vendor & supplier relationship management","Partnership outreach strategy"],
+    process:[
+      "Research & Identification","Outreach","Negotiation & Alignment","Partnership Launch & Tracking"
+    ]
+  }];
+  export default services;
 
-export default services;

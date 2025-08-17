@@ -102,12 +102,17 @@ const ServiceDetails = () => {
       ref={sectionRef}
       className="bg-white text-black font-[Montserrat] min-h-screen px-[12.5vw] py-20 relative"
     >
+      {/* Title */}
       <div className="gsap-text text-[2.5rem] font-bold text-[#0047FF] mb-6">
         {service.title}
       </div>
-      <p className="gsap-text text-lg mb-12 text-gray-700 max-w-3xl leading-relaxed">
+
+      {/* Description */}
+      <p className="gsap-text text-lg mb-12 text-gray-700 max-w-3xl leading-relaxed dm-sans-body">
         {service.description}
       </p>
+
+      {/* Image */}
       <div className="gsap-img w-full h-[400px] rounded-xl overflow-hidden shadow-xl mb-12">
         <img
           src={service.image}
@@ -115,9 +120,54 @@ const ServiceDetails = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="gsap-text text-md text-gray-800 max-w-4xl leading-[1.8] whitespace-pre-line">
-        {service.content}
+
+      {/* Detailed Content */}
+      {service.content && (
+        <div className="gsap-text text-md text-gray-800 max-w-4xl leading-[1.8] whitespace-pre-line mb-16">
+          {service.content}
+        </div>
+      )}
+{/* Our Process Section (Conditional) */}
+{service.process && service.process.length > 0 && (
+  <section
+    className="w-[75vw]  bg-white text-black py-16"
+    ref={sectionRef}
+  >
+    <h2 className="gsap-text text-3xl font-semibold text-[#0047FF] mb-16">
+      Our Process
+    </h2>
+
+    {service.process.map((step, idx) => (
+      <div
+        key={idx}
+        className="flex flex-col md:flex-row gap-10 items-start relative mb-20"
+      >
+        {/* Step number (like stats number) */}
+        <div
+          className="text-[4.5rem] font-regular leading-[1.1] text-[#0047FF]"
+        >
+          {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+        </div>
+
+        {/* Step content */}
+        <div className="flex flex-col">
+          <div className="text-lg font-light mt-2 text-gray-700">
+            {step.title || `Step ${idx + 1}`}
+          </div>
+          <div className="text-lg text-gray-400 mt-1 max-w-md dm-sans-body">
+            {step.description || step}
+          </div>
+        </div>
+
+        {/* Divider line like in stats */}
+        {idx < service.process.length - 1 && (
+          <div className="divider-line h-px bg-gray-300 w-full absolute -bottom-12 left-0"></div>
+        )}
       </div>
+    ))}
+  </section>
+)}
+
 
       {/* ==== More Services Section ==== */}
       <div className="relative w-[75vw] mx-auto mt-40">
@@ -138,8 +188,9 @@ const ServiceDetails = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-8 left-8">
-              <h3 className="text-white text-3xl font-semibold mb-2">{filtered[0].title}</h3>
-              <p className="text-white/80 max-w-[80%]">{filtered[0].description}</p>
+              <h3 className="text-white text-3xl font-semibold mb-2">
+                {filtered[0].title}
+              </h3>
             </div>
           </div>
 
@@ -158,8 +209,9 @@ const ServiceDetails = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-5 left-6">
-                  <h4 className="text-white text-xl font-medium mb-1">{s.title}</h4>
-                  <p className="text-white/80 text-sm max-w-[90%]">{s.description}</p>
+                  <h4 className="text-white text-xl font-medium mb-1">
+                    {s.title}
+                  </h4>
                 </div>
               </div>
             ))}
@@ -167,6 +219,7 @@ const ServiceDetails = () => {
         </div>
       </div>
 
+      {/* Custom Cursor & Scrollbar Styles */}
       <style>{`
         #custom-cursor {
           position: fixed;
