@@ -47,9 +47,9 @@ const Services = () => {
         {
           y: 0,
           opacity: 1,
-          duration: 1.1,
+          duration: 0.6,
           ease: "power3.out",
-          delay: i * 0.1,
+          delay: i * 0.05,
           scrollTrigger: {
             trigger: card,
             start: "top 85%",
@@ -86,72 +86,85 @@ const Services = () => {
 
   return (
     <>
-    <div ref={sectionRef} className="min-h-screen bg-white text-black dm-sans-heading ">
-      {/* === HEADER === */}
-      <div className="px-[12.5vw] pt-24 pb-10 ">
-        <h1 className="text-4xl md:text-6xl font-bold animate-text leading-tight tracking-tight mt-10">
-          <div>
-            We offer <span className="bg-[#0047FF] text-white px-3 py-1 rounded-lg">practical</span>
-          </div>
-          <div>
-            <span className="bg-[#0047FF] text-white px-3 py-1 rounded-lg">reliable</span> services built around you.
-          </div>
-        </h1>
-        <p className="text-lg md:text-xl mt-10 animate-text max-w-xl dm-sans-body">
-          We listen carefully, work honestly, and focus on getting things done right.
-        </p>
-      </div>
-      <FeatureCarousel services={services} navigate={navigate} />
+      <div ref={sectionRef} className="min-h-screen bg-white text-black dm-sans-heading ">
+        {/* === HEADER === */}
+        <div className="px-[12.5vw] pt-24 pb-10 ">
+          <h1 className="text-4xl md:text-6xl font-bold animate-text leading-tight tracking-tight mt-10">
+            <div>
+              We offer <span className="bg-[#0047FF] text-white px-3 py-1 rounded-lg">practical</span>
+            </div>
+            <div>
+              <span className="bg-[#0047FF] text-white px-3 py-1 rounded-lg">reliable</span> services built around you.
+            </div>
+          </h1>
+          <p className="text-lg md:text-xl mt-10 animate-text max-w-xl dm-sans-body">
+            We listen carefully, work honestly, and focus on getting things done right.
+          </p>
+        </div>
 
+        <FeatureCarousel services={services} navigate={navigate} />
 
-      {/* === SERVICES GRID === */}
-      <div className="px-[12.5vw] pb-32 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
-        {services.map((service, index) => (
-          <div
-            key={service.id}
-            className={`group relative service-card cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
-              index % 2 === 0 ? "translate-y-0" : "sm:-translate-y-6"
-            }`}
-          >
-            <h3 className="text-xl mb-4 font-semibold animate-text tracking-tight">{service.title}</h3>
-
+        {/* === SERVICES GRID === */}
+        <div className="px-[12.5vw] pb-32 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 items-start">
+          {services.map((service, index) => (
             <div
-              onClick={() => navigate(`/services/${service.slug}`)}
-              className="relative h-[280px] rounded-2xl overflow-hidden shadow-md"
+              key={service.id}
+              className={`group relative service-card cursor-pointer transition-all duration-300 hover:scale-[1.02] flex flex-col h-full ${
+                index % 2 === 0 ? "translate-y-0" : "sm:-translate-y-6"
+              }`}
             >
+              {/* Fixed min-height for titles so rows align */}
+              <h3 className="text-xl mb-4 font-semibold animate-text tracking-tight min-h-[3.5rem] flex items-center">
+                {service.title}
+              </h3>
+
               <div
-                className="absolute inset-0 transition-transform duration-700 scale-100 group-hover:scale-105"
-                style={{
-                  backgroundImage: `url(${service.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-              <div className="absolute inset-0 bg-[#0047FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 text-white text-center text-lg dm-sans-body">
-                {service.description}
+                onClick={() => navigate(`/services/${service.slug}`)}
+                className="relative h-[280px] rounded-2xl overflow-hidden shadow-md mt-auto"
+              >
+                <div
+                  className="absolute inset-0 transition-transform duration-700 scale-100 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${service.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div className="absolute inset-0 bg-[#0047FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 text-white text-center text-lg dm-sans-body">
+                  <p className="line-clamp-6">
+                    {service.description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {/* === CUSTOM CURSOR === */}
-      <style>{`
-        #custom-cursor {
-          position: fixed;
-          top: 0;
-          left: 0;
-          transform: translate(-50%, -50%);
-          font-size: 60px;
-          font-weight: bold;
-          color: #0047FF;
-          pointer-events: none;
-          z-index: 9999;
-          font-family: monospace;
-        }
-      `}</style>
-    </div>
-    
+        {/* === CUSTOM CURSOR === */}
+        <style>{`
+          #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            font-weight: bold;
+            color: #0047FF;
+            pointer-events: none;
+            z-index: 9999;
+            font-family: monospace;
+          }
+
+          /* Clamp text to 2 lines */
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        `}</style>
+      </div>
     </>
   );
 };

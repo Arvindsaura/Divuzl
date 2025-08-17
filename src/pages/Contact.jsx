@@ -4,7 +4,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import DecryptedText from "../components/DecryptedText";
-import Footer from "../components/Footer";
+import {
+  FaFacebookF,
+  FaYoutube,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -12,6 +19,16 @@ export default function Contact() {
   const formRef = useRef();
   const textRef = useRef();
   const [state, handleSubmit] = useForm("mqalllgo");
+
+  // Socials Array (same as Footer)
+  const socials = [
+    { icon: <FaInstagram />, name: "Instagram", handle: "divuzl", url: "https://instagram.com/divuzl" },
+    { icon: <FaLinkedinIn />, name: "LinkedIn", handle: "Divuzl", url: "https://linkedin.com/company/divuzl" },
+    { icon: <FaFacebookF />, name: "Facebook", handle: "Divuzl", url: "https://facebook.com/divuzl" },
+    { icon: <FaXTwitter />, name: "Twitter (X)", handle: "Divuzl", url: "https://x.com/Divuzl_" },
+    { icon: <FaYoutube />, name: "YouTube", handle: "divuzl", url: "https://youtube.com/@divuzlglobal?si=GL5g7HKiOytPlyZm" },
+    { icon: <FaWhatsapp />, name: "WhatsApp", handle: "+91 9220660377", url: "https://wa.me/919220660377" },
+  ];
 
   useEffect(() => {
     if (textRef.current) {
@@ -29,7 +46,6 @@ export default function Contact() {
       });
     }
 
-    // Animate all other text elements
     gsap.utils.toArray(".animate-text").forEach((el) => {
       const split = new SplitText(el, { type: "lines" });
       gsap.from(split.lines, {
@@ -45,7 +61,6 @@ export default function Contact() {
       });
     });
 
-    // Parallax effect
     gsap.utils.toArray(".parallax").forEach((el) => {
       gsap.to(el, {
         yPercent: 10,
@@ -61,7 +76,6 @@ export default function Contact() {
   }, []);
 
   return (
-    <>
     <div className="w-full min-h-screen bg-white text-neutral-900 py-16 md:py-24 px-6 md:px-[10vw] space-y-24 md:space-y-32">
 
       {/* Tagline */}
@@ -74,11 +88,12 @@ export default function Contact() {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+
         {/* Left Section — Form */}
         <div ref={formRef} className="space-y-14">
           <div ref={textRef}>
             <DecryptedText
-              text={`Let’s build\nsomething cool\ntogether.`}
+              text={`Let’s build                            \nsomething cool                     \ntogether.`}
               speed={90}
               maxIterations={18}
               characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabca1234567890"
@@ -130,7 +145,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-black text-white hover:bg-neutral-900 transition duration-300 text-sm"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-black text-white hover:bg-[#0047FF] transition duration-300 text-sm"
               >
                 <span>Send it</span>
                 <span className="text-base">→</span>
@@ -160,7 +175,7 @@ export default function Contact() {
                 ].map(({ label, email }, i) => (
                   <div key={i}>
                     <span className="font-medium">{label}:</span>{" "}
-                    <a href={`mailto:${email}`} className="text-blue-600 hover:underline">
+                    <a href={`mailto:${email}`} className="text-[#0047FF] hover:underline">
                       {email}
                     </a>
                   </div>
@@ -168,31 +183,32 @@ export default function Contact() {
               </div>
             </div>
 
-          <div className="animate-text">
-  <p className="text-neutral-500 uppercase text-xs tracking-widest mb-1">Instagram</p>
-  <a
-    href="https://instagram.com/divuzl"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center gap-2 hover:opacity-80 transition"
-  >
-    <img
-      src="https://tse4.mm.bing.net/th/id/OIP.NUFU5mhqhqOr82Ge-CwjawHaHv?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-      alt="Instagram"
-      className="w-6 h-6"
-    />
-    <span>@Divuzl</span>
-  </a>
-</div>
+            {/* Socials Section */}
+            <div className="animate-text">
+              <p className="text-neutral-500 uppercase text-xs tracking-widest mb-4">Social</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {socials.map((s, i) => (
+                  <a
+                    key={i}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-[#0047FF] transition text-[15px] "
+                  >
+                   <span className="w-8 h-8 flex items-center justify-center text-3xl">
+  {s.icon}
+</span>
 
-
+                    <span>{s.handle}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
-
-         
         </div>
       </div>
 
-      {/* Why Us — Minimal Grid */}
+      {/* Why Us */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center text-sm w-full max-w-5xl mx-auto pt-12 border-t border-neutral-200 parallax dm-sans-body">
         {[
           { title: "Always Custom", desc: "No templates. No fluff. Just thoughtful design, built for you." },
@@ -206,20 +222,17 @@ export default function Contact() {
         ))}
       </div>
 
-      {/* Final CTA Stripe */}
-      <div className="mt-20 md:mt-24 text-center px-6 py-12 md:py-14 rounded-3xl  parallax">
+      {/* Final CTA */}
+      <div className="mt-20 md:mt-24 text-center px-6 py-12 md:py-14 rounded-3xl parallax">
         <h2 className="text-xl md:text-2xl font-semibold mb-3 animate-text">Let’s create your next breakthrough.</h2>
         <p className="text-sm text-neutral-500 mb-6 animate-text">We’re ready when you are.</p>
         <a
           href="mailto:contact@divuzl.com"
-          className="inline-block px-6 py-3 bg-black text-white rounded-full hover:bg-neutral-900 transition text-sm"
+          className="inline-block px-6 py-3 bg-black text-white rounded-full hover:bg-[#0047FF] transition text-sm"
         >
           Start the conversation
         </a>
       </div>
     </div>
-    
-    </>
-
   );
 }

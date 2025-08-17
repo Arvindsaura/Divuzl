@@ -8,8 +8,8 @@ const Footer = () => {
     { icon: <FaInstagram />, name: "Instagram", handle: "divuzl", url: "https://instagram.com/divuzl" },
     { icon: <FaLinkedinIn />, name: "LinkedIn", handle: "Divuzl", url: "https://linkedin.com/company/divuzl" },
     { icon: <FaFacebookF />, name: "Facebook", handle: "Divuzl", url: "https://facebook.com/divuzl" },
-    { icon: <FaXTwitter />, name: "Twitter (X)", handle: "Divuzl", url: "https://x.com/divuzl" },
-    { icon: <FaYoutube />, name: "YouTube", handle: "divuzl", url: "https://youtube.com/@divuzl" },
+    { icon: <FaXTwitter />, name: "Twitter (X)", handle: "Divuzl", url: "https://x.com/Divuzl_" },
+    { icon: <FaYoutube />, name: "YouTube", handle: "divuzl", url: "https://youtube.com/@divuzlglobal?si=GL5g7HKiOytPlyZm" },
     { icon: <FaWhatsapp />, name: "WhatsApp", handle: "+91 9220660377", url: "https://wa.me/919220660377" },
   ];
 

@@ -110,21 +110,23 @@ const Navbar = () => {
           cursor: pointer;
         }
         .nav-link:hover { color: #0047FF; }
-        .user-links {
-          display: flex;
-          gap: 0.75rem;
-          align-items: center;
-        }
+        
         .nav-btn {
-          font-size: 0.875rem;
-          font-weight: 500;
-          padding: 0.25rem 0.75rem;
-       
-          border: none;
-     
-          
-          cursor: pointer;
-        }
+  text-transform: uppercase;   /* same as nav-link */
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: white;                /* same color */
+          /* gives the white pill */
+            /* text color inside */
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;       /* rounded pill */
+  border: none;
+  cursor: pointer;
+  line-height: 1;              /* keeps vertical alignment */
+}
+.nav-btn:hover {
+  background-color: #f0f0f0;
+}
         .nav-btn:hover { background-color: #f0f0f0; }
         .user-name { font-size: 0.875rem; color: #ccc; }
         .hamburger-btn { background: none; border: none; cursor: pointer; display: none; }
