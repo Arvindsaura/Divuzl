@@ -79,7 +79,7 @@ export default function Team() {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-light mb-4 text-gray-900">Meet our team</h1>
-          <p className="text-gray-600 mb-10 max-w-2xl">
+          <p className="text-gray-600 mb-10 max-w-2xl mb-4 text-sm sm:text-base md:text-lg dm-sans-body">
             Meet our exceptional team at Divuzl! Comprising diverse talents and
             expertise, we are a dedicated group committed to delivering excellence
             in every project.

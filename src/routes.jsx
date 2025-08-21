@@ -20,14 +20,13 @@ const AllRoutes = () => (
     <Route path="signup" element={<SignUp />} />
     <Route path="contact" element={<Contact />} />
     <Route path="services" element={<Services />} />
-    <Route path="services/:slug" element={<ServiceDetail />} />
+    <Route path="services/:slug" element={<ServiceDetail />} /> {/* This route now handles the pillar details */}
     <Route path="case-studies" element={<CaseStudies />} />
     <Route path="case-studies/:id" element={<CaseStudyDetail />} />
     <Route path="projects" element={<Projects />} />
     <Route path="projects/:id" element={<ProjectDetail />} />
     <Route path="blogs" element={<Blogs />} />
     <Route path="team" element={<Team />} />
-    
     <Route path="blogs/:id" element={<BlogDetail />} />
   </Routes>
 );

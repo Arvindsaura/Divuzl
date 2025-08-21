@@ -112,7 +112,7 @@ const FAQ = () => {
   }, []);
 
   return (
-   <section className="bg-white py-24 w-[90vw] sm:w-[85vw] lg:w-[75vw] mx-auto px-4 sm:px-6 dm-sans-heading">
+   <section className="bg-white py-24 w-[90vw] sm:w-[85vw] lg:w-[75vw] mx-auto dm-sans-heading">
 
 
       {/* Tag */}

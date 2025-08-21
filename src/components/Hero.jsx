@@ -88,7 +88,9 @@ export default function Hero() {
             </h1>
 
             <p className="text-base text-white animate-hero-text dm-sans-body">
-              We Partner With Ambitious Brands, Startups, And Institutions To Craft Powerful Growth Strategies, Build Impactful Digital Ecosystems, And Solve Complex Business Challenges With Creativity, Technology, And Innovation.
+              We partner with ambitious brands, startups, and institutions to solve complex business 
+challenges. Our team uses creativity, technology, and innovation to craft powerful growth 
+strategies and build impactful digital ecosystems that drive real results
             </p>
           </div>
 
