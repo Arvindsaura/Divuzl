@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -31,7 +31,7 @@ const steps = [
   }
 ];
 
-const cursorImages = steps.map((step) => step.image);
+const cursorImages = steps.map(step => step.image);
 
 const Workflow = () => {
   const sectionRef = useRef(null);
@@ -41,9 +41,14 @@ const Workflow = () => {
   const currentIndex = useRef(0);
   const [cursorImage, setCursorImage] = useState(cursorImages[0]);
 
-  // Scroll-triggered fade + slide + scale for steps
-  useEffect(() => {
+  // Reset refs on render
+  stepsRef.current = [];
+
+  // Scroll-triggered fade + slide + scale
+  useLayoutEffect(() => {
     stepsRef.current.forEach((step, i) => {
+      if (!step) return;
+
       gsap.set(step, { opacity: 0, y: 80, scale: 0.98 });
 
       gsap.fromTo(
@@ -66,10 +71,12 @@ const Workflow = () => {
     });
   }, []);
 
-  // Hover tilt + scale effect for each step
+  // Hover tilt + scale
   useEffect(() => {
     stepsRef.current.forEach((step) => {
-      step.addEventListener("mousemove", (e) => {
+      if (!step) return;
+
+      const handleMouseMove = (e) => {
         const rect = step.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -78,17 +85,26 @@ const Workflow = () => {
         const rotateX = ((y - centerY) / centerY) * 4;
         const rotateY = ((x - centerX) / centerX) * 4;
         gsap.to(step, { rotateX, rotateY, scale: 1.02, duration: 0.3 });
-      });
+      };
 
-      step.addEventListener("mouseleave", () => {
+      const handleMouseLeave = () => {
         gsap.to(step, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.5 });
-      });
+      };
+
+      step.addEventListener("mousemove", handleMouseMove);
+      step.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        step.removeEventListener("mousemove", handleMouseMove);
+        step.removeEventListener("mouseleave", handleMouseLeave);
+      };
     });
   }, []);
 
-  // Cursor movement effect
+  // Cursor image movement
   useEffect(() => {
     const section = sectionRef.current;
+    if (!section) return;
 
     const handleMouseMove = (e) => {
       const rect = section.getBoundingClientRect();
@@ -101,21 +117,18 @@ const Workflow = () => {
         lastX.current = e.clientX;
       }
 
-      gsap.to(cursorRef.current, {
-        x,
-        y,
-        duration: 0.25,
-        ease: "power3.out"
-      });
+      if (cursorRef.current) {
+        gsap.to(cursorRef.current, {
+          x,
+          y,
+          duration: 0.25,
+          ease: "power3.out",
+        });
+      }
     };
 
-    const showCursor = () => {
-      gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
-    };
-
-    const hideCursor = () => {
-      gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
-    };
+    const showCursor = () => cursorRef.current && gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
+    const hideCursor = () => cursorRef.current && gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
 
     section.addEventListener("mousemove", handleMouseMove);
     section.addEventListener("mouseenter", showCursor);
@@ -142,16 +155,19 @@ const Workflow = () => {
   }, []);
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative bg-white text-black dm-sans-heading px-[12.5vw] py-24 overflow-hidden"
-    >
+    <div ref={sectionRef} className="relative bg-white text-black dm-sans-heading px-[12.5vw] py-24 overflow-hidden">
+      {/* Cursor Image */}
+      <div
+        ref={cursorRef}
+        className="pointer-events-none fixed top-0 left-0 w-[150px] h-[150px] rounded-full bg-center bg-cover opacity-0 z-50 mix-blend-lighten"
+        style={{ transform: "translate(-50%, -50%)" }}
+      />
+
       {/* Heading */}
-      <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide  ">
-          Workflow
-        </p>
+      <p className="text-xs border w-[8vw] border-[#0047FF] text-[#0047FF] py-2 px-6 rounded-[30px] font-semibold hover:bg-[#0047FF] hover:text-white transition mb-6 uppercase tracking-wide">
+        Workflow
+      </p>
       <div className="text-5xl md:text-6xl font-bold mb-20 relative z-10 w-fit dm-sans-heading">
-        
         How do we work?
       </div>
 
@@ -160,12 +176,10 @@ const Workflow = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            ref={(el) => (stepsRef.current[index] = el)}
-            className={`flex flex-col md:flex-row items-center gap-12 ${
-              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            }`}
+            ref={(el) => { if (el) stepsRef.current[index] = el; }}
+            className={`flex flex-col md:flex-row items-center gap-12 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
           >
-            {/* Text Section */}
+            {/* Text */}
             <div className="md:w-1/2 w-full">
               <h3 className="text-3xl font-semibold text-[#0047FF] mb-4 transition-all duration-300 hover:text-black hover:scale-[1.05] hover:uppercase">
                 {step.title}
@@ -175,7 +189,7 @@ const Workflow = () => {
               </p>
             </div>
 
-            {/* Image Section */}
+            {/* Image */}
             <div className="md:w-1/2 w-full h-[300px] relative rounded-xl overflow-hidden group">
               <div
                 className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-500 group-hover:scale-110"
@@ -185,8 +199,6 @@ const Workflow = () => {
           </div>
         ))}
       </div>
-
-    
     </div>
   );
 };

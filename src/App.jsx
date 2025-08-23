@@ -7,14 +7,18 @@ import SmoothLayout from "./components/SmoothLayout";
 function App() {
   return (
     <BrowserRouter>
+      {/* Navbar persists across all pages */}
       <Navbar />
+
+      {/* Only dynamic content uses SmoothLayout */}
       <SmoothLayout>
-        <main className=" dm-sans-heading">
+        <main className="dm-sans-heading">
           <AllRoutes />
         </main>
-       <Footer /> 
       </SmoothLayout>
-       
+
+      {/* Footer persists across all pages */}
+      <Footer />
     </BrowserRouter>
   );
 }

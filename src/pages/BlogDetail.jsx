@@ -32,6 +32,7 @@ const BlogDetail = () => {
     }
 
     const animateText = (target) => {
+      if (!target) return;
       const split = new SplitType(target, { types: "words" });
       gsap.from(split.words, {
         y: 40,
@@ -46,8 +47,8 @@ const BlogDetail = () => {
       });
     };
 
-    if (titleRef.current) animateText(titleRef.current);
-    if (headingSplitRef.current) animateText(headingSplitRef.current);
+    animateText(titleRef.current);
+    animateText(headingSplitRef.current);
 
     if (contentRef.current) {
       gsap.from(contentRef.current, {
@@ -108,85 +109,86 @@ const BlogDetail = () => {
   }
 
   return (
-    <div className="bg-white text-[#111] font-terrat">
-      {/* Hero */}
-      <section className="h-[50vh] sm:h-[40vh] px-[12vw] flex flex-col items-center justify-center text-center space-y-4">
-        <h1
-          ref={titleRef}
-          className="text-3xl md:text-5xl font-bold leading-tight"
-        >
-          {blog.title}
-        </h1>
-        <p className="text-gray-500 text-base md:text-lg">
-          Published on {blog.date}
-        </p>
-        <p className="text-black font-bold text-lg">
-          {blog.author || "Unknown Author"}
-        </p>
-      </section>
-
-      {/* Blog Image */}
-      <section className="w-[75vw] mx-auto">
-        <img
-          ref={imageRef}
-          src={blog.image}
-          alt={blog.title}
-          className="rounded-3xl shadow-xl object-cover w-full aspect-video"
-        />
-      </section>
-
-      {/* Blog Content */}
-      <section className="py-24 px-[12vw]">
-        <div
-          ref={contentRef}
-          className="w-full flex flex-col justify-center space-y-8"
-        >
-          <p className="text-lg text-gray-700">{blog.description}</p>
-        </div>
-
-        {/* Full Content */}
-        <div className="mt-12 whitespace-pre-line text-[#444] text-base leading-7 dm-sans-body">
-          {blog.content}
-        </div>
-      </section>
-
-      {/* Visual Section */}
-      <section className="px-[12vw] py-32 flex flex-col md:flex-row items-center gap-16 bg-white">
-        <div className="md:w-1/2 w-full">
-          <h2
-            ref={headingSplitRef}
-            className="text-3xl md:text-4xl font-regular mb-6 leading-tight"
+    <div id="smooth-wrapper" className="bg-white text-[#111] font-terrat">
+      <div id="smooth-content">
+        {/* Hero */}
+        <section className="h-[50vh] sm:h-[40vh] px-[12vw] flex flex-col items-center justify-center text-center space-y-4">
+          <h1
+            ref={titleRef}
+            className="text-3xl md:text-5xl font-bold leading-tight"
           >
-            Built Different,<br />Designed for the Future.
-          </h2>
-          <p
-            ref={paragraphRef}
-            className="text-base text-[#444] leading-relaxed"
-          >
-            Speed meets elegance. Our platform delivers an intuitive experience
-            crafted for productivity and performance. No distractions—just
-            smooth, seamless usability that scales with you.
+            {blog.title}
+          </h1>
+          <p className="text-gray-500 text-base md:text-lg">
+            Published on {blog.date}
           </p>
-        </div>
-        <div className="md:w-1/2 w-full">
-          <div className="rounded-3xl overflow-hidden w-full aspect-video">
-            <img
-              src="https://i.pinimg.com/1200x/71/dc/0f/71dc0f02ac6f9179fa3791ffd5ba2304.jpg"
-              className="w-full h-full object-cover"
-              alt="Preview"
-            />
-          </div>
-        </div>
-      </section>
+          <p className="text-black font-bold text-lg">
+            {blog.author || "Unknown Author"}
+          </p>
+        </section>
 
-      {/* More Blogs */}
-      <section className="px-[12vw] py-20 rounded-t-[2rem]">
-        <h2 className="text-3xl md:text-4xl font-regular mb-4">
-          Loved This? <br />Here Are More Blogs You’ll Definitely Enjoy
-        </h2>
-        <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full blur-[100px] opacity-40 -z-10" />
-        <BlogSection />
-      </section>
+        {/* Blog Image */}
+        <section className="w-[75vw] mx-auto">
+          <img
+            ref={imageRef}
+            src={blog.image}
+            alt={blog.title}
+            className="rounded-3xl shadow-xl object-cover w-full aspect-video"
+          />
+        </section>
+
+        {/* Blog Content */}
+        <section className="py-24 px-[12vw]">
+          <div
+            ref={contentRef}
+            className="w-full flex flex-col justify-center space-y-8"
+          >
+            <p className="text-lg text-gray-700">{blog.description}</p>
+          </div>
+
+          <div className="mt-12 whitespace-pre-line text-[#444] text-base leading-7 dm-sans-body">
+            {blog.content}
+          </div>
+        </section>
+
+        {/* Visual Section */}
+        <section className="px-[12vw] py-32 flex flex-col md:flex-row items-center gap-16 bg-white">
+          <div className="md:w-1/2 w-full">
+            <h2
+              ref={headingSplitRef}
+              className="text-3xl md:text-4xl font-regular mb-6 leading-tight"
+            >
+              Built Different,<br />Designed for the Future.
+            </h2>
+            <p
+              ref={paragraphRef}
+              className="text-base text-[#444] leading-relaxed"
+            >
+              Speed meets elegance. Our platform delivers an intuitive experience
+              crafted for productivity and performance. No distractions—just
+              smooth, seamless usability that scales with you.
+            </p>
+          </div>
+          <div className="md:w-1/2 w-full">
+            <div className="rounded-3xl overflow-hidden w-full aspect-video">
+              <img
+                src="https://i.pinimg.com/1200x/71/dc/0f/71dc0f02ac6f9179fa3791ffd5ba2304.jpg"
+                className="w-full h-full object-cover"
+                alt="Preview"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* More Blogs */}
+        <section className="px-[12vw] py-20 rounded-t-[2rem]">
+          <h2 className="text-3xl md:text-4xl font-regular mb-4">
+            Loved This? <br />Here Are More Blogs You’ll Definitely Enjoy
+          </h2>
+          <div className="fixed top-[-10vh] right-[-10vw] w-[300px] h-[300px] rounded-full blur-[100px] opacity-40 -z-10" />
+          <BlogSection />
+        </section>
+      </div>
     </div>
   );
 };

@@ -19,98 +19,54 @@ const Navbar = () => {
   const scrollToAbout = () => {
     const section = document.getElementById("about");
     if (location.pathname === "/") {
-      if (section)
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: { y: section, offsetY: 80 },
-          ease: "power2.out",
-        });
+      if (section) gsap.to(window, { duration: 1, scrollTo: { y: section, offsetY: 80 }, ease: "power2.out" });
     } else {
       sessionStorage.setItem("scrollToAbout", "true");
       navigate("/");
     }
   };
 
-  // Modified NavLink component to handle children and conditional rendering
-  const NavLink = ({ to, text, onClick, isButton, children, className = "" }) => {
-    const handleClick = (e) => {
-      if (onClick) {
-        onClick();
-      } else if (to) {
-        if (location.pathname === to) {
-          e.preventDefault(); // Prevent default link behavior if on the same page
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: { y: 0 },
-            ease: "power2.out",
-          });
-        } else {
-          navigate(to);
+  const NavLink = ({ to, text, onClick, isButton }) => (
+    <button
+      onClick={() => {
+        if (onClick) onClick();
+        else {
+          if (location.pathname === to) gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power2.out" });
+          else navigate(to);
         }
-      }
-      setMenuOpen(false);
-    };
-
-    if (isButton) {
-      return (
-        <button onClick={handleClick} className={`nav-btn ${className}`}>
-          {children || text}
-        </button>
-      );
-    }
-    
-    // Renders an anchor tag for links, which is the correct semantic element
-    return (
-      <a href={to || "#"} onClick={handleClick} className={`nav-link ${className}`}>
-        {children || text}
-      </a>
-    );
-  };
+        setMenuOpen(false);
+      }}
+      className={isButton ? "nav-btn" : "nav-link"}
+    >
+      {text}
+    </button>
+  );
 
   useEffect(() => {
-    gsap.fromTo(
-      navRef.current,
-      { y: -50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: navRef.current,
-          start: "top top",
-          toggleActions: "play none none none",
-        },
-      }
-    );
+    gsap.fromTo(navRef.current, { y: -50, opacity: 0 }, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: { trigger: navRef.current, start: "top top", toggleActions: "play none none none" }
+    });
 
     gsap.to(logoRef.current, {
       yPercent: -10,
       ease: "none",
-      scrollTrigger: {
-        trigger: navRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      },
+      scrollTrigger: { trigger: navRef.current, start: "top top", end: "bottom top", scrub: 1 }
     });
   }, []);
 
   useEffect(() => {
     if (mobileMenuRef.current) {
       if (menuOpen) {
-        gsap.fromTo(
-          mobileMenuRef.current,
+        gsap.fromTo(mobileMenuRef.current,
           { height: 0, opacity: 0 },
           { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" }
         );
       } else {
-        gsap.to(mobileMenuRef.current, {
-          height: 0,
-          opacity: 0,
-          duration: 0.4,
-          ease: "power2.in",
-        });
+        gsap.to(mobileMenuRef.current, { height: 0, opacity: 0, duration: 0.4, ease: "power2.in" });
       }
     }
   }, [menuOpen]);
@@ -137,19 +93,15 @@ const Navbar = () => {
         }
         .logo {
           font-size: 1.5rem;
-         
-        }
-        .logo-link {
-          text-decoration: none; /* Remove underline from the logo link */
+          font-weight: bold;
         }
         .nav-links {
           display: flex;
           gap: 1.5rem;
-          flex-wrap: nowrap;
-          align-items: center;
+          flex-wrap: nowrap; /* prevent wrapping */
         }
         .nav-link {
-          
+          text-transform: uppercase;
           font-weight: 500;
           font-size: 0.875rem;
           color: white;
@@ -158,29 +110,22 @@ const Navbar = () => {
           cursor: pointer;
         }
         .nav-link:hover { color: #0047FF; }
-        
-        .nav-btn {
-          text-transform: uppercase;
-          font-weight: 500;
-          font-size: 0.875rem;
-          color: white;
-          padding: 0.25rem 0.75rem;
-          border-radius: 9999px;
-          border: 1px solid white;
-          background-color: transparent;
-          cursor: pointer;
-          line-height: 1;
-        }
-        .nav-btn:hover {
-          background-color: #f0f0f0;
-          color: black;
-        }
-        
         .user-links {
           display: flex;
+          gap: 0.75rem;
           align-items: center;
-          gap: 0.5rem;
         }
+        .nav-btn {
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 0.25rem 0.75rem;
+       
+          border: none;
+     
+          
+          cursor: pointer;
+        }
+        .nav-btn:hover { background-color: #f0f0f0; }
         .user-name { font-size: 0.875rem; color: #ccc; }
         .hamburger-btn { background: none; border: none; cursor: pointer; display: none; }
         .hamburger-icon { width: 1.5rem; height: 1.5rem; color: white; }
@@ -203,80 +148,50 @@ const Navbar = () => {
 
       <nav ref={navRef} className="navbar">
         <div className="nav-container">
-          {/* Logo is now the Home button */}
-          <NavLink to="/" className="logo-link">
-            <h1 ref={logoRef} className="logo dm-sans-heading ">
-              Divuzl
-            </h1>
-          </NavLink>
+          <h1 ref={logoRef} className="logo dm-sans-heading">Divuzl</h1>
 
           {/* Desktop Nav */}
           <div className="desktop-nav">
             <ul className="nav-links">
-              {/* Home button removed */}
+              <li><NavLink to="/" text="Home" /></li>
+              <li><NavLink text="About Us" onClick={scrollToAbout} /></li>
+              <li><NavLink to="/blogs" text="News" /></li>
+              <li><NavLink to="/contact" text="Contact" /></li>
+              <li><NavLink to="/services" text="Services" /></li>
+              <li><NavLink to="/projects" text="Projects" /></li>
+              <li><NavLink to="/team" text="Team" /></li>
               <li>
-                <NavLink text="ABOUT US" onClick={scrollToAbout} />
-              </li>
-              <li>
-                <NavLink to="/blogs" text="NEWS" />
-              </li>
-              <li>
-                <NavLink to="/contact" text="CONTACT" />
-              </li>
-              <li>
-                <NavLink to="/services" text="SERVICES" />
-              </li>
-              <li>
-                <NavLink to="/projects" text="PROJECTS" />
-              </li>
-              <li>
-                <NavLink to="/team" text="TEAM" />
-              </li>
-              <li>
-                {isSignedIn ? (
-                  <div className="user-links">
-                    <UserButton afterSignOutUrl="/" />
-                    <span className="user-name">
-                      {user.fullName || user.username || user.emailAddresses[0]?.emailAddress}
-                    </span>
-                  </div>
-                ) : (
-                  <div className="user-links">
-                    <NavLink to="/signup" text="SIGN UP" isButton />
-                    <NavLink to="/login" text="LOGIN" isButton />
-                  </div>
-                )}
+                <div className="user-links">
+              {isSignedIn ? (
+                <>
+                  <UserButton afterSignOutUrl="/" />
+                  <span className="user-name">{user.fullName || user.username || user.emailAddresses[0]?.emailAddress}</span>
+                </>
+              ) : (
+                <>
+                  <NavLink to="/signup" text="SIGN UP" isButton />
+                  <NavLink to="/login" text="LOGIN" isButton />
+                </>
+              )}
+            </div>
               </li>
             </ul>
+            
           </div>
 
           {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="hamburger-btn"
-            aria-label="Toggle Menu"
-          >
-            <svg
-              className="hamburger-icon"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              />
+          <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-btn" aria-label="Toggle Menu">
+            <svg className="hamburger-icon" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
             </svg>
           </button>
         </div>
 
         {/* Mobile Dropdown */}
-        <div ref={mobileMenuRef} className="mobile-nav">
+        <div ref={mobileMenuRef} className="mobile-nav "  style={{ alignItems: "flex-start" }}>
           {menuOpen && (
             <>
-              {/* Home link removed from mobile menu */}
+              <NavLink to="/" text="Home" />
               <NavLink text="About Us" onClick={scrollToAbout} />
               <NavLink to="/blogs" text="News" />
               <NavLink to="/contact" text="Contact" />
@@ -286,9 +201,7 @@ const Navbar = () => {
               {isSignedIn ? (
                 <div className="user-links">
                   <UserButton afterSignOutUrl="/" />
-                  <span className="user-name">
-                    {user.fullName || user.username || user.emailAddresses[0]?.emailAddress}
-                  </span>
+                  <span className="user-name">{user.fullName || user.username || user.emailAddresses[0]?.emailAddress}</span>
                 </div>
               ) : (
                 <>
