@@ -117,22 +117,23 @@ const WhatWeDo = () => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-16 flex justify-center gap-6">
-        {!showAll && (
-          <button
-            onClick={() => setShowAll(true)}
-            className="px-6 py-2 rounded-full border border-[#0047FF] text-[#0047FF] hover:bg-[#0047FF] hover:text-white transition font-normal"
-          >
-            Read More
-          </button>
-        )}
-        <button
-          onClick={() => navigate("/services")}
-          className="px-6 py-2 rounded-full border border-[#0047FF] text-[#0047FF] hover:bg-[#0047FF] hover:text-white transition font-normal"
-        >
-          See All Services
-        </button>
-      </div>
+<div className="mt-16 flex justify-center gap-6">
+  {!showAll && (
+    <button
+      onClick={() => setShowAll(true)}
+      className="px-6 py-2 rounded-full border border-white text-white hover:bg-white hover:text-black transition font-normal"
+    >
+      Read More
+    </button>
+  )}
+  <button
+    onClick={() => navigate("/services")}
+    className="px-6 py-2 rounded-full border border-white text-white hover:bg-white hover:text-black transition font-normal"
+  >
+    See All Services
+  </button>
+</div>
+
     </section>
   );
 };

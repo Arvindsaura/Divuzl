@@ -11,6 +11,7 @@ import FAQ from "../components/FAQ";
 import Test from "../components/Test";
 import Abouth from "../components/Abouth";
 import Hero from "../components/Hero";
+import Footer from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother); // ✅ Register both
 
@@ -91,6 +92,7 @@ const Home = () => {
       <BlogSection />
       <FAQ />
       <Test />
+      <Footer/>
     </main>
   );
 };

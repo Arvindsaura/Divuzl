@@ -96,11 +96,14 @@ strategies and build impactful digital ecosystems that drive real results
 
           {/* Call to action button, positioned below the text on small screens */}
           <a
-            href="/contact"
-            className="mt-8 lg:mt-0 inline-flex items-center px-6 py-3 text-lg bg-black text-white rounded-full text-base hover:bg-white hover:text-black transition-colors duration-300 dm-sans-body"
-          >
-            Book a Free Consultation
-          </a>
+  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1WzHi4ZCeLjsSFTIAiIXddZNYe2awtv3z8dvhIJHQZzMeoVtZQajBJfgOQeMNr-dGfpUDFxyd3?gv=true"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-8 lg:mt-0 inline-flex items-center px-6 py-3 text-lg bg-black text-white rounded-full text-base hover:bg-white hover:text-black transition-colors duration-300 dm-sans-body"
+>
+  Book a Free Consultation
+</a>
+
         </div>
       </section>
     </div>

@@ -3,12 +3,16 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AllRoutes from "./routes";
 import SmoothLayout from "./components/SmoothLayout";
+import WhatsApp from "./components/WhatsApp"; // ✅ Import
 
 function App() {
   return (
     <BrowserRouter>
       {/* Navbar persists across all pages */}
       <Navbar />
+
+      {/* WhatsApp floating button */}
+      <WhatsApp />
 
       {/* Only dynamic content uses SmoothLayout */}
       <SmoothLayout>

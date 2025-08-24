@@ -3,21 +3,17 @@ import { Link } from "react-router-dom";
 import projects from "../data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ScrollSmoother from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   const [serviceFilter, setServiceFilter] = useState("All");
   const [industryFilter, setIndustryFilter] = useState("All");
 
-  const smootherRef = useRef(null);
-  const scrollContentRef = useRef(null);
   const projectRefs = useRef([]);
   const textRefs = useRef([]);
-  const modernBlockRef = useRef(null);
+  const scrollContainer = useRef(null);
 
-  // Filter logic
   const filteredProjects = projects.filter((proj) => {
     const serviceMatch = serviceFilter === "All" || proj.service === serviceFilter;
     const industryMatch = industryFilter === "All" || proj.industry === industryFilter;
@@ -25,128 +21,105 @@ const Projects = () => {
   });
 
   useEffect(() => {
-    // Clear old triggers
-    ScrollTrigger.killAll();
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
-    // Scroll smoother
-    if (!smootherRef.current) {
-      smootherRef.current = ScrollSmoother.create({
-        smooth: 1.5,
-        effects: true,
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
+    // ✅ Smooth Scroll effect (Projects only)
+    const ctx = gsap.context(() => {
+      gsap.to(scrollContainer.current, {
+        y: 0,
+        ease: "power4.out",
+        overwrite: true,
+        duration: 1.2,
       });
-    }
 
-    // Animate each project card
-    projectRefs.current.forEach((el, i) => {
-      if (!el) return;
+      // Animate project cards
+      projectRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: i * 0.1,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              end: "bottom 60%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
 
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay: i * 0.1,
+        gsap.to(el.querySelector("img"), {
+          yPercent: -20,
+          ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",
-            end: "bottom 60%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      // Parallax on image
-      gsap.to(el.querySelector("img"), {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    });
-
-    // Animate heading text
-    textRefs.current.forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-
-    // Animate bottom block
-    if (modernBlockRef.current) {
-      gsap.fromTo(
-        modernBlockRef.current,
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: modernBlockRef.current,
             start: "top bottom",
             end: "bottom top",
             scrub: true,
           },
-        }
-      );
-    }
+        });
+      });
 
-    // Reset refs for next render
+      // Animate text
+      textRefs.current.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, scrollContainer);
+
     projectRefs.current = [];
     textRefs.current = [];
+
+    return () => ctx.revert();
   }, [filteredProjects]);
 
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content" ref={scrollContentRef} className="text-black ">
-
-        {/* Hero Section */}
-<div
-  className="relative w-screen h-[50vh] bg-cover bg-center"
-  style={{ backgroundImage: "url('/images/projectbg.jpg')" }}
->
-          
-          <div className="absolute inset-0  bg-opacity-40 flex items-center px-6 sm:px-10 md:px-16 lg:px-24">
-            <div className="text-white text-left w-[75vw] max-w-4xl">
-              <p
-                ref={(el) => el && textRefs.current.push(el)}
-                className="text-base sm:text-lg md:text-xl mb-2"
-              >
-                The digital landscape has changed.
-              </p>
-              <h1
-                ref={(el) => el && textRefs.current.push(el)}
-                className="text-2xl sm:text-4xl md:text-5xl font-bold"
-              >
-                Don’t get left behind.
-              </h1>
-            </div>
+    <div ref={scrollContainer} className="text-black scroll-smooth">
+      {/* Hero Section */}
+      <div
+        className="relative w-screen h-[50vh] bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/projectbg.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-opacity-40 flex items-center">
+          <div className="text-white text-left w-[80vw] ml-[10vw]">
+            <p
+              ref={(el) => el && textRefs.current.push(el)}
+              className="text-base sm:text-lg md:text-xl mb-2"
+            >
+              The digital landscape has changed.
+            </p>
+            <h1
+              ref={(el) => el && textRefs.current.push(el)}
+              className="text-2xl sm:text-4xl md:text-5xl font-bold"
+            >
+              Don’t get left behind.
+            </h1>
           </div>
         </div>
+      </div>
 
-        {/* Filter Section */}
-        <div className="bg-black text-white px-4 sm:px-6 md:px-20 py-12 rounded-t- mt-[-5vh]">
+      {/* Filter + Content Section */}
+      <div className="bg-black text-white mt-[-5vh] py-12">
+        <div className="w-[80vw] ml-[10vw]">
+          {/* Filters */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mt-[5vh]">
-            <h2 className="text-5xl sm:text-5xl font-semibold">
-              Our Recent Work
-            </h2>
+            <h2 className="text-5xl font-semibold">Our Recent Work</h2>
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Service Filter */}
               <div>
@@ -162,7 +135,6 @@ const Projects = () => {
                   <option value="Strategy">Strategy</option>
                 </select>
               </div>
-
               {/* Industry Filter */}
               <div>
                 <label className="block text-sm">Filter by Industry</label>
@@ -180,40 +152,34 @@ const Projects = () => {
             </div>
           </div>
 
-         {/* Project Cards */}
-<div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8">
-  {filteredProjects.map((proj, i) => (
-    <Link to={`/projects/${proj.slug}`} key={proj.slug}>
-      <div
-        ref={(el) => el && projectRefs.current.push(el)}
-        className="relative rounded-2xl overflow-hidden shadow-lg group transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
-      >
-        <img
-          src={proj.image}
-          alt={proj.title}
-          className="w-full h-[40vh] object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-          <h2 className="text-white text-xl font-semibold text-center px-4 leading-snug tracking-wide">
-            {proj.title}
-          </h2>
-        </div>
-      </div>
-    </Link>
-  ))}
-  {/* Quote / Animated Block */}
-          <div
-            ref={modernBlockRef}
-            className="mt-20  rounded-xl text-white text-4xl dm-sans-body text-left tracking-wide"
-          >
+          {/* Project Cards */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((proj, i) => (
+              <Link to={`/projects/${proj.slug}`} key={proj.slug}>
+                <div
+                  ref={(el) => el && projectRefs.current.push(el)}
+                  className="relative rounded-2xl overflow-hidden shadow-lg group transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
+                >
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    className="w-full h-[40vh] object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <h2 className="text-white text-xl font-semibold text-center px-4 leading-snug tracking-wide">
+                      {proj.title}
+                    </h2>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Quote */}
+          <div className="mt-20 text-white text-4xl dm-sans-body text-left tracking-wide">
             We’d love to hear from you, so send us a note, and we’ll be in touch.
           </div>
-</div>
-
-
-          
         </div>
-
       </div>
     </div>
   );
