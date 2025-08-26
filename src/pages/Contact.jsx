@@ -18,7 +18,7 @@ export default function Contact() {
     { icon: <FaFacebookF />, url: "https://facebook.com/divuzl" },
     { icon: <FaXTwitter />, url: "https://x.com/Divuzl_" },
     { icon: <FaYoutube />, url: "https://youtube.com/@divuzlglobal?si=GL5g7HKiOytPlyZm" },
-    { icon: <FaEnvelope />, url: "mailto:info@divuzl.com" },
+    { icon: <FaEnvelope />, url: "mailto:contact@divuzl.com " },
   ];
 
   return (

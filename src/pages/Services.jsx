@@ -58,29 +58,7 @@ const Services = () => {
   }, []);
 
   // CUSTOM CURSOR
-  useEffect(() => {
-    const cursor = document.createElement("div");
-    cursor.id = "custom-cursor";
-    cursor.innerText = "*";
-    document.body.appendChild(cursor);
-    cursorRef.current = cursor;
-
-    const moveCursor = (e) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-    };
-
-    document.addEventListener("mousemove", moveCursor);
-
-    return () => {
-      document.removeEventListener("mousemove", moveCursor);
-      cursor.remove();
-    };
-  }, []);
+  
 
   return (
     <>
@@ -154,28 +132,6 @@ const Services = () => {
           </section>
         ))}
 
-        {/* === CUSTOM CURSOR === */}
-        <style>{`
-          #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            font-weight: bold;
-            color: #0047FF;
-            pointer-events: none;
-            z-index: 9999;
-            font-family: monospace;
-          }
-          .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        `}</style>
       </div>
     </>
   );

@@ -12,7 +12,7 @@ const socials = [
   { icon: <FaXTwitter />, name: "Twitter (X)", handle: "Divuzl", url: "https://x.com/Divuzl_" },
   { icon: <FaInstagram />, name: "Instagram", handle: "divuzl", url: "https://instagram.com/divuzl" },
   { icon: <FaYoutube />, name: "YouTube", handle: "divuzl", url: "https://www.youtube.com/@divuzl" },
-  { icon: <FaEnvelope />, name: "Mail", handle: "info@divuzl.com", url: "mailto:info@divuzl.com" },
+  { icon: <FaEnvelope />, name: "Mail", handle: "info@divuzl.com", url: "mailto:contact@divuzl.com " },
 ];
 
 

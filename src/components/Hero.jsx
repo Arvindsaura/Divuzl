@@ -66,7 +66,7 @@ export default function Hero() {
         className="relative h-[65vh] lg:h-screen px-6 pb-16 flex items-end justify-start px-[12.5vw]"
         style={{
           // The original background image path is restored here.
-          backgroundImage: "url('/images/contactbg.jpg')",
+          backgroundImage: "url('/images/cover image divuzl.jpeg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
