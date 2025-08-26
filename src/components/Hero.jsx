@@ -87,7 +87,7 @@ export default function Hero() {
               Divuzl
             </h1>
 
-            <p className="text-base text-white animate-hero-text dm-sans-body">
+            <p className="text-base text-white animate-hero-text dm-sans-body w-[45vw]">
               We partner with ambitious brands, startups, and institutions to solve complex business 
 challenges. Our team uses creativity, technology, and innovation to craft powerful growth 
 strategies and build impactful digital ecosystems that drive real results
@@ -99,9 +99,9 @@ strategies and build impactful digital ecosystems that drive real results
   href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1WzHi4ZCeLjsSFTIAiIXddZNYe2awtv3z8dvhIJHQZzMeoVtZQajBJfgOQeMNr-dGfpUDFxyd3?gv=true"
   target="_blank"
   rel="noopener noreferrer"
-  className="mt-8 lg:mt-0 inline-flex items-center px-6 py-3 text-lg bg-black text-white rounded-full text-base hover:bg-white hover:text-black transition-colors duration-300 dm-sans-body"
+  className="mt-8 lg:mt-0 inline-flex items-center px-6 py-3 text-lg bg-white text-black rounded-full text-base  hover:text-white hover:bg-black transition-colors duration-300 dm-sans-body"
 >
-  Book a Free Consultation
+ Free Consultation
 </a>
 
         </div>
